@@ -8,6 +8,9 @@
     "/app/asisten: 375px, no horizontal overflow",
     "/app/asisten: 768px, no horizontal overflow",
     "/app/asisten: 1440px, no horizontal overflow",
+    "/app/tindak-lanjut: 375px, no horizontal overflow",
+    "/app/tindak-lanjut: 768px, no horizontal overflow",
+    "/app/tindak-lanjut: 1440px, no horizontal overflow",
     "/app/dashboard: 375px, no horizontal overflow",
     "/app/dashboard: 768px, no horizontal overflow",
     "/app/dashboard: 1440px, no horizontal overflow",
@@ -62,7 +65,10 @@
     "Public schedule: accessible collapsed navigation, desktop layout, combined filters and reset",
     "POV: no WhatsApp preview on patient page; staff notification calculates from saved address without device geolocation",
     "Travel: automatic route duration, departure/header and WhatsApp preview, route failure clears stale result, location permission denial",
-    "Motion: entrance enabled by preference, disabled for reduced motion"
+    "Motion: entrance enabled by preference, disabled for reduced motion",
+    "Search: focus ring wraps whole field; sidebar scrollbar hidden while scrolling remains available",
+    "Follow-up: real navigation, review, mark complete, empty state, reset and unread filter",
+    "Visual demo: prediction changes, doctor confirmation, 22 simulated patient messages, patient reply and reset"
   ],
   "consoleErrors": [],
   "screenshots": [
@@ -80,6 +86,17 @@
     {
       "route": "/app/asisten",
       "file": "p31-asisten.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/app/tindak-lanjut",
+      "file": "p12-tindak-lanjut.png",
       "viewport": {
         "width": 1440,
         "height": 1000

@@ -71,7 +71,7 @@
 | P9 | Profil & keamanan | Could | ⬜ | — |
 | P10 | Hari ini | Must | ⬜ | Fase 0 |
 | P11 | Detail sesi | Must | ⬜ | Fase 0 |
-| P12 | Tindak lanjut | Must | ⬜ | — |
+| P12 | Tindak lanjut | Must | ✅ | Fase 0: halaman dan aksi lokal; backend T17 belum |
 | P13 | Pasien hari ini | Should | ⬜ | — |
 | P14 | Riwayat pesan | Could | ⬜ | — |
 | P15 | Laporan dampak | Should | ⬜ | Fase 0 |
@@ -135,3 +135,10 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - ✅ T39: hapus pratinjau WhatsApp pada P4; tampilkan di notifikasi P11 milik petugas, memakai koordinat alamat rumah terdaftar (simulasi), bukan GPS petugas/pasien. Fungsi pasien lainnya tetap.
 
 - T39: 17 test, build/typecheck/lint/Knip lulus; 61 cek browser. Bukti: p11-notifikasi-pasien.png dan p04-rute-otomatis.png.
+
+## T40: interaksi pencarian, navigasi dan demo
+- ✅ Fokus pencarian menyatu dengan wadah; scrollbar sidebar disembunyikan dengan kemampuan scroll dipertahankan.
+- ✅ P12 frontend statis tersedia di /app/tindak-lanjut; semua pintu masuk diarahkan ke halaman tersebut. Tandai selesai/filter/atur ulang hanya state lokal; T17 backend tetap belum selesai.
+- ✅ Mode demo kini punya visual POV petugas/WhatsApp dokter/pasien dan aksi konfirmasi/balas, bukan sekadar teks timeline. Tidak ada pengiriman nyata.
+
+- T40: 17 test, build/typecheck/lint/Knip lulus; 67 cek browser pada 16 layar. Demo visual, fokus pencarian, scrollbar dan aksi P12 terverifikasi.

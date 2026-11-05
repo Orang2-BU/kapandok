@@ -87,3 +87,13 @@ Preview: http://127.0.0.1:3000, /app/dashboard, /k/KD-4812. Bukti tambahan: mock
 - Verifikasi: 17 test, lint/typecheck/build/Knip lulus; 61 cek browser. Uji memastikan preview tidak muncul di pasien, muncul di petugas, saran berasal dari alamat simpanan, dan tidak ada tombol GPS pada POV petugas. Tiga viewport tanpa overflow dan konsol bersih.
 - Build tetap menampilkan peringatan keamanan Next.js bawaan yang sudah dicatat. Screenshot diperbarui; belum push.
 - Preview petugas: http://127.0.0.1:3000/app/sesi/s-pd-rina#notifikasi-pasien. Preview pasien: http://127.0.0.1:3000/k/KD-4812.
+
+
+## T40: perbaikan searchbar, sidebar, Tindak lanjut dan Mode demo
+- Searchbar: outline input dihapus khusus di dalam search; ring fokus berpindah ke seluruh wadah melalui focus-within, termasuk ikon. Fokus keyboard tetap terlihat.
+- Sidebar: scrollbar disembunyikan; overflow/scroll dan navigasi tetap aktif.
+- Akar masalah Tindak lanjut: menu dahulu menuju sesi dengan query filter sehingga tidak membuka halaman tersendiri. Sekarang seluruh pintu masuk menuju /app/tindak-lanjut (P12 sesuai PRD). Halaman memiliki filter jadwal ulang/belum membaca, detail pasien, tinjau slot dari seed, tandai selesai, empty state dan reset. Semua perubahan state lokal, bukan penyelesaian backend T17.
+- Mode demo: kontrol dan visual ditempatkan di atas. Dua POV menunjukkan prediksi mulai berubah 09.00 ke 10.15, konfirmasi dokter, munculnya 22 pesan simulasi, jam datang Ibu Sri dan balasan Hadir. Timeline tetap dapat dipilih dan pemutar mendukung mulai/jeda/kecepatan/reset. Tidak memutar video; perubahan aplikasi ditampilkan langsung sebagai simulasi interaktif. Tidak mengirim WA atau mengubah halaman lain secara global.
+- Verifikasi akhir: 17 test, lint, typecheck, build dan Knip lulus. 67 cek browser pada 16 layar di 375/768/1440, tanpa overflow/konsol error. Fokus search diuji computed style, scrollbar tersembunyi diuji, navigasi P12 dan state selesai/reset/filter diuji, demo diuji sampai balasan pasien dan kembali ke awal.
+- Bukti: mockup/verification.json, mockup/p12-tindak-lanjut.png, mockup/admin-demo.png, mockup/demo-visual-pasien.png. Peringatan keamanan Next.js bawaan tetap muncul sebelum build ulang berhasil; belum ditangani dalam perubahan UI ini.
+- Preview: http://127.0.0.1:3000/admin/demo dan http://127.0.0.1:3000/app/tindak-lanjut. Belum push/deploy.

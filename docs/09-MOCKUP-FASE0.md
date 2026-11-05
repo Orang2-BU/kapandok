@@ -163,3 +163,9 @@ Atas permintaan pengguna untuk menyesuaikan referensi lebih dekat, revisi UI mem
 
 ## T39: dua POV notifikasi
 Pratinjau WhatsApp hanya pada P11 petugas, di panel Notifikasi pasien yang bisa dibuka. Tautan cepat tersedia di panel Respons pasien. Saran dihitung dari koordinat alamat terdaftar untuk KD-4812 pada seed/travel-config.json, bukan GPS perangkat. Alamat dan koordinat tersebut adalah simulasi. Tidak ada geocoding alamat teks atau data pasien nyata. P4 mempertahankan fungsi perhitungan perjalanannya, tetapi tidak lagi menampilkan pratinjau pesan. Tidak ada pengiriman WhatsApp nyata atau sinkronisasi state antarhalaman.
+
+## T40: pencarian, P12 dan demo visual
+- Input pencarian tidak menggambar outline sendiri. Wadah search memakai focus-within agar ring melingkupi ikon dan kolom. Fokus keyboard tetap terlihat.
+- Scrollbar sidebar disembunyikan, sedangkan scroll wheel, touchpad, dan fokus keyboard tetap bekerja.
+- P12 /app/tindak-lanjut: filter jadwal ulang/belum membaca dari seed, lihat pasien, tinjau slot, tandai selesai dan reset secara lokal. Seluruh tautan Tindak lanjut menuju P12. Tidak ada perubahan booking/pengiriman nyata atau implementasi T17 backend.
+- Mode demo: kontrol di atas, visual sesi petugas dan panel WhatsApp dokter/pasien mengikuti enam tahap seed. Prediksi berubah, konfirmasi dokter dapat disimulasikan, pesan pasien muncul pada tahap akhir dan tombol Hadir memberi respons simulasi. Timeline tetap bisa dipilih; mulai/jeda/kecepatan/reset tetap tersedia. Tidak ada integrasi WA atau perubahan halaman sesi/pasien lain secara global.

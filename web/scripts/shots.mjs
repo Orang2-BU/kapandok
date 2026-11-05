@@ -18,6 +18,7 @@ page.on('console', message => { if (message.type() === 'error' || message.type()
 const screens = [
   ['/', 'p00-beranda', 1440, 1000],
   ['/app/asisten', 'p31-asisten', 1440, 1000],
+  ['/app/tindak-lanjut', 'p12-tindak-lanjut', 1440, 1000],
   ['/app/dashboard', 'dashboard', 1440, 1000],
   ['/app', 'p10-hari-ini', 1440, 900],
   ['/app/sesi/s-pd-rina', 'p11-detail-sesi', 1440, 1100],
@@ -195,6 +196,40 @@ try {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   assert.equal(await page.locator('.landing-copy').evaluate(n => getComputedStyle(n).animationName), 'reference-enter');
   checks.push('Motion: entrance enabled by preference, disabled for reduced motion');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await open('/admin/dokter', 1440);
+  const searchInput = page.getByRole('textbox', { name: 'Cari dokter', exact: true });
+  await searchInput.focus();
+  assert.equal(await searchInput.evaluate(n => getComputedStyle(n).outlineStyle), 'none');
+  assert.equal(await page.locator('.management-search').evaluate(n => getComputedStyle(n).outlineStyle), 'solid');
+  assert.equal(await page.locator('.desktop-sidebar .nav-items').evaluate(n => getComputedStyle(n).scrollbarWidth), 'none');
+  checks.push('Search: focus ring wraps whole field; sidebar scrollbar hidden while scrolling remains available');
+  await page.locator('.desktop-sidebar').getByRole('link', { name: 'Tindak lanjut', exact: true }).click();
+  await page.waitForURL('**/app/tindak-lanjut');
+  await page.getByRole('button', { name: 'Tinjau tindak lanjut' }).click();
+  await page.getByRole('button', { name: 'Tandai selesai pada demo' }).click();
+  assert.ok(await page.getByRole('heading', { name: 'Tindak lanjut pada daftar ini selesai' }).isVisible());
+  await page.getByRole('button', { name: 'Atur ulang demo' }).click();
+  assert.equal(await page.locator('.followup-row').count(), 1);
+  await page.getByRole('button', { name: 'Belum membaca (5)' }).click();
+  assert.equal(await page.locator('.followup-row').count(), 5);
+  checks.push('Follow-up: real navigation, review, mark complete, empty state, reset and unread filter');
+  await open('/admin/demo', 375);
+  assert.ok((await page.locator('.demo-session-state').innerText()).includes('09.00'));
+  await page.locator('.demo-timeline button').nth(3).click();
+  assert.ok((await page.locator('.demo-session-state').innerText()).includes('10.15'));
+  await page.getByRole('button', { name: 'Simulasikan konfirmasi dokter' }).click();
+  assert.ok((await page.locator('.demo-session-state').innerText()).includes('Dokter sudah mengonfirmasi'));
+  await page.locator('.demo-timeline button').nth(5).click();
+  assert.ok((await page.locator('.demo-message-status').innerText()).includes('22'));
+  await page.getByRole('button', { name: 'Simulasikan pasien menekan Hadir' }).click();
+  assert.ok(await page.getByText('Hadir · balasan pasien diterima pada simulasi', { exact: true }).isVisible());
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.getByRole('heading', { name: 'Mode demo', exact: true }).click();
+  await page.locator('.demo-scene').screenshot({ path: path.join(output, 'demo-visual-pasien.png'), animations: 'disabled' });
+  await page.getByRole('button', { name: 'Atur ulang', exact: true }).click();
+  assert.ok(await page.getByRole('heading', { name: 'Belum ada pesan baru' }).isVisible());
+  checks.push('Visual demo: prediction changes, doctor confirmation, 22 simulated patient messages, patient reply and reset');
   assert.deepEqual(errors, [], 'Browser console must be clean');
   await writeFile(path.join(output, 'verification.json'), JSON.stringify({ base, browser: browser.version(), checks, consoleErrors: errors, screenshots: screens.map(([route, name, width, height]) => ({ route, file: `${name}.png`, viewport: { width, height }, deviceScaleFactor: 2, fullPage: true, provenance: 'Playwright capture of the locally built KapanDok mockup; source data from project docs.' })) }, null, 2));
   process.stdout.write(`${checks.length} browser checks passed; ${screens.length} proposal PNGs saved to ${output}\n`);
