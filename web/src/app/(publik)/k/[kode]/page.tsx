@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import data from '@/data/mockup-data.json';
 import { Arrival } from '@/components/public-pages';
 export const metadata = { title: 'Jam datang saya' };
+export function generateStaticParams() { return [{ kode: 'KD-4812' }]; }
 export default async function Page({ params }: { params: Promise<{ kode: string }> }) {
   const { kode } = await params;
   if (kode !== 'KD-4812') notFound();

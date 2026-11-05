@@ -1,0 +1,43 @@
+name: Frontend CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Aktifkan pnpm
+        run: corepack enable && corepack prepare pnpm@12.16.1 --activate
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Test
+        run: pnpm test
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Dead code
+        run: pnpm dlx knip
+      - name: Build statis
+        run: pnpm build
+      - name: Cek hasil export
+        run: |
+          test -s out/index.html
+          test -s out/app/sesi/s-pd-rina/index.html
+          test -s out/k/KD-4812/index.html
+          test -s out/404.html

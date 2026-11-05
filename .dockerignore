@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+web/node_modules
+web/.next
+web/out
+.env*
+web/.env*
+docs
+Lampiran_SS_web
+Proposal_*.docx
+*.md
