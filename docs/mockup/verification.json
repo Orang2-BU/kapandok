@@ -1,0 +1,98 @@
+{
+  "base": "http://127.0.0.1:3002",
+  "browser": "154.0.8037.98",
+  "checks": [
+    "/app/dashboard: 375px, no horizontal overflow",
+    "/app/dashboard: 768px, no horizontal overflow",
+    "/app/dashboard: 1440px, no horizontal overflow",
+    "/app: 375px, no horizontal overflow",
+    "/app: 768px, no horizontal overflow",
+    "/app: 1440px, no horizontal overflow",
+    "/app/sesi/s-pd-rina: 375px, no horizontal overflow",
+    "/app/sesi/s-pd-rina: 768px, no horizontal overflow",
+    "/app/sesi/s-pd-rina: 1440px, no horizontal overflow",
+    "/jadwal: 375px, no horizontal overflow",
+    "/jadwal: 768px, no horizontal overflow",
+    "/jadwal: 1440px, no horizontal overflow",
+    "/k/KD-4812: 375px, no horizontal overflow",
+    "/k/KD-4812: 768px, no horizontal overflow",
+    "/k/KD-4812: 1440px, no horizontal overflow",
+    "/admin/laporan: 375px, no horizontal overflow",
+    "/admin/laporan: 768px, no horizontal overflow",
+    "/admin/laporan: 1440px, no horizontal overflow",
+    "Sidebar resizes workspace and hides collapsed wordmark",
+    "Drawer: focus trap, Escape, scrim, close button, navigation, focus restoration",
+    "P10/P11: clinic filter, patient search, status counts 5/12/1, empty state, reset, sorting, simulated resend dialog",
+    "Patient: doctor search, invalid booking feedback, KD-4812 navigation",
+    "Report: sorting ascending and descending"
+  ],
+  "consoleErrors": [],
+  "screenshots": [
+    {
+      "route": "/app/dashboard",
+      "file": "dashboard.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/app",
+      "file": "p10-hari-ini.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/app/sesi/s-pd-rina",
+      "file": "p11-detail-sesi.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/jadwal",
+      "file": "p01-cek-jadwal.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/k/KD-4812",
+      "file": "p04-jam-datang.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/laporan",
+      "file": "p15-laporan.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    }
+  ]
+}

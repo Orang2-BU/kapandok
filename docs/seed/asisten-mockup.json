@@ -1,0 +1,31 @@
+{
+  "_sumber": "DATA SIMULASI untuk P31 Asisten petugas. Pasien dan antrean diambil dari antrean_rina; slot pengganti, masa rujukan, nomor usulan, dan nomor log adalah tambahan simulasi. Lihat docs/09-MOCKUP-FASE0.md bagian P31.",
+  "pengguna": "rahmat",
+  "rekap": {
+    "jam": "08.51",
+    "permintaan": "Tolong rekap pasien dr. Rina hari ini yang belum konfirmasi hadir."
+  },
+  "analisis": {
+    "jam": "08.52",
+    "permintaan": "Ibu Nur Hidayah minta jadwal ulang. Bisa dipindah? Dampaknya apa?",
+    "kode_booking": "KD-6976",
+    "slot": [
+      { "id": "SL-1111-0940", "hari": "Rabu, 11 November 2026", "jam": "09.40", "catatan": "Paling awal" },
+      { "id": "SL-1111-1120", "hari": "Rabu, 11 November 2026", "jam": "11.20", "catatan": "Sesi sama, lebih siang" },
+      { "id": "SL-1311-0910", "hari": "Jumat, 13 November 2026", "jam": "09.10", "catatan": "Hari lain" }
+    ],
+    "efek_antrean": "Perkiraan dipanggil antrean 21-22 bisa maju sekitar 5 menit. Perubahan di bawah ambang 10 menit, jadi tidak ada pesan baru ke pasien lain.",
+    "penanda": [
+      { "label": "Jenis kunjungan", "nilai": "Kontrol", "sumber": "Pendaftaran" },
+      { "label": "Rujukan BPJS", "nilai": "Berlaku sampai 27 November 2026. Ketiga slot masih di dalam masa berlaku.", "sumber": "Data rujukan" },
+      { "label": "Penanda prioritas dari dokter", "nilai": "Tidak ada", "sumber": "Rekam jadwal poli" }
+    ],
+    "usulan": { "id": "U-0917", "slot_id": "SL-1111-0940", "berlaku_sampai": "09.02" }
+  },
+  "aksi": {
+    "jam": "08.53",
+    "permintaan": "Oke, tolong jadwalkan.",
+    "wa_tertahan_sampai": "08.58",
+    "log_id": "LA-0917"
+  }
+}

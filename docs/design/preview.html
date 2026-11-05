@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preview Desain KapanDok</title>
+<link rel="stylesheet" href="preview-tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif; background: var(--color-neutral); color: var(--color-on-surface); font-variant-numeric: tabular-nums; }
+  ::selection { background: var(--color-primary-soft); color: var(--color-on-primary-soft); }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; border-radius: 14px; }
+  .app { display: flex; min-height: 100dvh; }
+  .rail { width: 80px; flex: none; display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 24px 0; border-right: 1px solid var(--color-outline); }
+  .logo { font-weight: 700; font-size: 12px; display: grid; justify-items: center; gap: 6px; margin-bottom: 14px; }
+  .logo-mark { width: 40px; height: 40px; border-radius: 12px; background: var(--color-primary); display: grid; place-items: center; color: #fff; }
+  .ib { width: 44px; height: 44px; border-radius: var(--radius-full); border: 1px solid var(--color-outline); background: var(--color-neutral); display: grid; place-items: center; position: relative; }
+  .ib:hover { background: var(--color-primary-soft); }
+  .ib.on { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-on-primary); }
+  .ib .n { position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--color-primary); color: #fff; font-size: 11px; font-weight: 600; display: grid; place-items: center; border: 2px solid #fff; }
+  .rail .sep { width: 26px; height: 1px; background: var(--color-outline); margin: 5px 0; }
+  .main { flex: 1; padding: 22px var(--spacing-margin) 32px; max-width: 1360px; }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+  .search { height: 46px; border-radius: var(--radius-full); background: var(--color-secondary); display: flex; align-items: center; gap: 10px; padding: 0 20px 0 8px; width: 400px; color: var(--color-on-surface-muted); font-size: 15px; }
+  .circ { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: grid; place-items: center; flex: none; }
+  .acct { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 8px 0 5px; border: 1px solid var(--color-outline); border-radius: var(--radius-full); }
+  .av { width: 34px; height: 34px; border-radius: 50%; background: var(--color-primary-soft); color: var(--color-on-primary-soft); display: grid; place-items: center; font-weight: 600; font-size: 13px; }
+  .acct b { font-size: 14px; font-weight: 600; display: block; }
+  .acct small { font-size: 12px; color: var(--color-on-surface-muted); }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px; }
+  h1 { font-size: var(--text-display-title); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; }
+  h1 span { display: block; color: var(--color-on-surface-subtle); }
+  .pills { display: flex; gap: 9px; align-items: center; }
+  .pill { height: 46px; border-radius: var(--radius-full); background: var(--color-secondary); color: var(--color-on-secondary); display: inline-flex; align-items: center; gap: 10px; padding: 0 16px 0 8px; font-size: 15px; font-weight: 500; }
+  .pill.main-act { background: var(--color-primary); color: var(--color-on-primary); padding: 0 8px 0 20px; }
+  .sim { background: var(--color-warning-soft); color: var(--color-on-warning-soft); height: 28px; padding: 0 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--spacing-gutter); }
+  .panel { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--spacing-panel); }
+  .panel.alt { background: var(--color-surface-alt); }
+  .ph { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .pt { display: flex; align-items: center; gap: 9px; font-size: var(--text-title); font-weight: 500; }
+  .mk { width: 10px; height: 10px; border-radius: 3px; }
+  .mk.w { background: var(--color-on-warning-soft); } .mk.s { background: var(--color-on-success-soft); } .mk.a { background: var(--color-primary); }
+  .sum { display: flex; flex-direction: column; gap: 6px; }
+  .sum .l { font-size: 14px; color: var(--color-on-surface-muted); display: flex; justify-content: space-between; align-items: center; }
+  .sum .v { font-size: var(--text-metric); font-weight: 300; letter-spacing: -0.025em; line-height: 1.05; }
+  .sum .c { font-size: 12px; font-weight: 500; color: var(--color-on-surface-muted); }
+  .go { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--color-outline); background: #fff; display: grid; place-items: center; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 150px; gap: 18px; align-items: center; padding: 12px 0; border-top: 1px solid var(--color-outline); }
+  .row.first { border-top: 0; padding-top: 2px; }
+  .row > .badge { justify-self: end; }
+  .doc { font-size: 15px; font-weight: 500; }
+  .doc small, .cap { display: block; font-size: 12.5px; color: var(--color-on-surface-muted); font-weight: 400; margin-top: 2px; }
+  .t { font-size: 26px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; }
+  .t small { font-size: 12.5px; color: var(--color-on-surface-muted); letter-spacing: 0; margin-left: 6px; font-weight: 400; }
+  .why { font-size: 13.5px; color: var(--color-on-surface-muted); margin-top: 1px; }
+  .badge { height: 26px; padding: 0 10px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+  .b-w { background: var(--color-warning-soft); color: var(--color-on-warning-soft); }
+  .b-d { background: var(--color-danger-soft); color: var(--color-on-danger-soft); }
+  .b-s { background: var(--color-success-soft); color: var(--color-on-success-soft); }
+  .b-n { background: var(--color-neutral); color: var(--color-on-surface); border: 1px solid var(--color-outline); }
+  .tag { height: 24px; padding: 0 9px; border-radius: var(--radius-full); background: var(--color-primary); color: var(--color-on-primary); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .tag.soft { background: var(--color-primary-soft); color: var(--color-on-primary-soft); }
+  .big { font-size: var(--text-display-time); font-weight: 300; letter-spacing: -0.03em; line-height: 1; color: var(--color-primary); }
+  .metric { font-size: var(--text-metric); font-weight: 300; letter-spacing: -0.025em; line-height: 1.05; }
+  .metric small { font-size: 13.5px; color: var(--color-on-surface-muted); letter-spacing: 0; font-weight: 400; }
+  .ibtn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--color-outline); background: #fff; display: grid; place-items: center; }
+  .chips { display: flex; gap: 8px; }
+  .chip { height: 34px; border-radius: var(--radius-sm); border: 1px solid var(--color-outline); background: #fff; padding: 0 13px; font-size: 14px; display: inline-flex; align-items: center; }
+  .chip.on { background: var(--color-primary); color: var(--color-on-primary); border-color: var(--color-primary); }
+  hr.d { border: 0; border-top: 1px solid var(--color-outline); margin: 14px 0; }
+  .chart text { font-family: inherit; font-size: 12px; fill: var(--color-on-surface-muted); }
+  .chart .val { fill: var(--color-on-surface); font-weight: 600; }
+  .sheet { padding: 32px 28px 60px 108px; border-top: 1px solid var(--color-outline); }
+  .sheet h2 { font-size: 20px; font-weight: 500; margin: 26px 0 12px; }
+  .sw { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sw div { width: 120px; font-size: 12px; color: var(--color-on-surface-muted); }
+  .sw i { display: block; height: 56px; border-radius: 14px; border: 1px solid var(--color-outline); margin-bottom: 6px; }
+  .demo { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 8v5M12 16.2v.1" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M3 20a6 6 0 0 1 12 0M16 4.5a3.5 3.5 0 0 1 0 7M21 20a6 6 0 0 0-4-5.6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-hist" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l4 2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><path d="M5 3v6a5 5 0 0 0 10 0V3M10 14v2a5 5 0 0 0 10 0v-2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><circle cx="20" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="1.75"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="m9 9 6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="app">
+  <nav class="rail" aria-label="Navigasi utama">
+    <div class="logo"><div class="logo-mark"><svg width="22" height="22"><use href="#i-clock"/></svg></div>KapanDok</div>
+    <a class="ib on" href="#" aria-label="Hari ini" aria-current="page"><svg width="18" height="18"><use href="#i-clock"/></svg></a>
+    <a class="ib" href="#" aria-label="Tindak lanjut, 1 item"><svg width="18" height="18"><use href="#i-alert"/></svg><span class="n">1</span></a>
+    <a class="ib" href="#" aria-label="Pasien"><svg width="18" height="18"><use href="#i-users"/></svg></a>
+    <a class="ib" href="#" aria-label="Riwayat"><svg width="18" height="18"><use href="#i-hist"/></svg></a>
+    <span class="sep" aria-hidden="true"></span>
+    <a class="ib" href="#" aria-label="Laporan"><svg width="18" height="18"><use href="#i-chart"/></svg></a>
+    <a class="ib" href="#" aria-label="Dokter"><svg width="18" height="18"><use href="#i-steth"/></svg></a>
+    <a class="ib" href="#" aria-label="Pengaturan"><svg width="18" height="18"><use href="#i-gear"/></svg></a>
+  </nav>
+
+  <main class="main">
+    <div class="top">
+      <label class="search"><span class="circ"><svg width="16" height="16"><use href="#i-search"/></svg></span>Cari pasien atau kode booking</label>
+      <div class="pills">
+        <span class="sim"><svg width="14" height="14"><use href="#i-flask"/></svg>Data simulasi</span>
+        <div class="acct"><span class="av">RH</span><span><b>Rahmat Hidayat</b><small>Petugas poli</small></span><span class="ibtn" style="border:0"><svg width="16" height="16"><use href="#i-down"/></svg></span></div>
+      </div>
+    </div>
+
+    <div class="head">
+      <h1><span>Senin, 9 November</span>Hari ini</h1>
+      <div class="pills">
+        <span class="pill"><span class="circ"><svg width="16" height="16"><use href="#i-steth"/></svg></span>Semua poli<svg width="16" height="16"><use href="#i-down"/></svg></span>
+        <span class="pill"><span class="circ"><svg width="16" height="16"><use href="#i-clock"/></svg></span>Diperbarui 08.50</span>
+        <a class="pill main-act" href="#">Tindak lanjut (1)<span class="circ"><svg width="16" height="16" style="color:var(--color-primary)"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <a class="panel sum" href="#" style="grid-column: span 3"><span class="l">Sesi hari ini<span class="go"><svg width="14" height="14"><use href="#i-ne"/></svg></span></span><span class="v">5</span><span class="c">2 terlambat · 1 batal</span></a>
+      <a class="panel sum" href="#" style="grid-column: span 3"><span class="l">Pasien terjadwal<span class="go"><svg width="14" height="14"><use href="#i-ne"/></svg></span></span><span class="v">90</span><span class="c">di 5 poli</span></a>
+      <a class="panel sum" href="#" style="grid-column: span 3"><span class="l">Menunggu konfirmasi dokter<span class="go"><svg width="14" height="14"><use href="#i-ne"/></svg></span></span><span class="v">1</span><span class="c">dr. Dewi Anggraini, dikirim 08.47</span></a>
+      <a class="panel sum" href="#" style="grid-column: span 3"><span class="l">Perlu tindak lanjut<span class="go"><svg width="14" height="14"><use href="#i-ne"/></svg></span></span><span class="v">1</span><span class="c">1 pasien minta jadwal ulang</span></a>
+
+      <section class="panel" style="grid-column: span 8">
+        <div class="ph"><div class="pt"><span class="mk w"></span>Perlu perhatian</div><span class="cap" style="margin:0">3 dari 5 sesi</span></div>
+        <a class="row first" href="#">
+          <div class="doc">dr. Agus Prasetyo, Sp.B<small>Bedah · 13.00-16.00 · 14 pasien</small></div>
+          <div><div class="t">Batal</div><div class="why">9 dari 14 pasien sudah memilih slot pengganti</div></div>
+          <span class="badge b-d"><svg width="13" height="13"><use href="#i-x"/></svg>Batal praktik</span>
+        </a>
+        <a class="row" href="#">
+          <div class="doc">dr. Dewi Anggraini, Sp.A<small>Anak · 10.00-13.00 · 16 pasien</small></div>
+          <div><div class="t">10.20<small>10.10-10.35</small></div><div class="why">Masih ada 6 pasien visite rawat inap</div></div>
+          <span class="badge b-w"><svg width="13" height="13"><use href="#i-clock"/></svg>Menunggu dokter</span>
+        </a>
+        <a class="row" href="#">
+          <div class="doc">dr. Rina Setyaningsih, Sp.PD<small>Penyakit Dalam · 09.00-13.00 · 22 pasien</small></div>
+          <div><div class="t">10.15<small>10.05-10.30</small></div><div class="why">Tindakan di OK 2 berjalan 40 menit melewati estimasi</div></div>
+          <span class="badge b-w"><svg width="13" height="13"><use href="#i-clock"/></svg>Terlambat 75 mnt</span>
+        </a>
+      </section>
+
+      <section class="panel alt" style="grid-column: span 4">
+        <div class="ph"><div class="pt"><span class="mk a"></span>Sesi paling terdampak</div><span class="ibtn"><svg width="16" height="16"><use href="#i-dots"/></svg></span></div>
+        <div class="cap" style="margin:0 0 6px">dr. Rina Setyaningsih, mulai diperkirakan</div>
+        <div style="display:flex;align-items:flex-start;gap:10px"><div class="big">10.15</div><span class="tag"><svg width="12" height="12"><use href="#i-ne"/></svg>75 mnt</span></div>
+        <div class="cap">rentang 10.05-10.30 · dikonfirmasi dokter 08.41</div>
+        <hr class="d">
+        <div class="metric">12<small> dari 22 pasien konfirmasi hadir</small></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><span class="tag soft">17 dibaca</span><span class="badge b-n">5 belum dibaca</span><span class="badge b-w">1 jadwal ulang</span></div>
+      </section>
+
+      <section class="panel" style="grid-column: span 7">
+        <div class="ph"><div class="pt"><span class="mk a"></span>Keterlambatan mulai per dokter</div><div class="chips"><span class="chip on">Hari ini</span><span class="chip">7 hari</span></div></div>
+        <svg class="chart" viewBox="0 -6 700 236" width="100%" role="img" aria-label="Keterlambatan mulai praktik dalam menit: dr. Bambang 5, dr. Lestari 0, dr. Rina 75, dr. Dewi 20, dr. Agus batal">
+          <g stroke="var(--color-outline)" stroke-dasharray="4 4">
+            <line x1="48" y1="20.0" x2="690" y2="20.0"/><line x1="48" y1="62.5" x2="690" y2="62.5"/><line x1="48" y1="105.0" x2="690" y2="105.0"/><line x1="48" y1="147.5" x2="690" y2="147.5"/>
+          </g>
+          <line x1="48" y1="190" x2="690" y2="190" stroke="var(--color-outline)"/>
+          <text x="40" y="24.0" text-anchor="end">80</text><text x="40" y="66.5" text-anchor="end">60</text><text x="40" y="109.0" text-anchor="end">40</text><text x="40" y="151.5" text-anchor="end">20</text><text x="40" y="194.0" text-anchor="end">0</text>
+          <text x="48" y="8">menit</text>
+          <g fill="var(--color-chart-1)">
+            <rect x="92" y="179.4" width="56" height="10.6" rx="4"/>
+            <rect x="220" y="188" width="56" height="2" rx="1"/>
+            <rect x="348" y="30.6" width="56" height="159.4" rx="4"/>
+            <rect x="476" y="147.5" width="56" height="42.5" rx="4"/>
+          </g>
+          <text class="val" x="120" y="173.4" text-anchor="middle">5</text>
+          <text class="val" x="248" y="183" text-anchor="middle">0</text>
+                    <text class="val" x="376" y="24.6" text-anchor="middle">75</text>
+          <text class="val" x="504" y="141.5" text-anchor="middle">20</text>
+          <text x="632" y="184" text-anchor="middle" style="fill:var(--color-on-danger-soft);font-weight:600">Batal</text>
+          <text x="120" y="210" text-anchor="middle">Bambang</text><text x="248" y="210" text-anchor="middle">Lestari</text><text x="376" y="210" text-anchor="middle">Rina</text><text x="504" y="210" text-anchor="middle">Dewi</text><text x="632" y="210" text-anchor="middle">Agus</text>
+        </svg>
+      </section>
+
+      <section class="panel" style="grid-column: span 5">
+        <div class="ph"><div class="pt"><span class="mk s"></span>Berjalan normal</div><span class="cap" style="margin:0">2 sesi</span></div>
+        <a class="row first" href="#" style="grid-template-columns:1fr auto"><div class="doc">dr. Bambang Hartono, Sp.OG<small>Kebidanan dan Kandungan · 18 pasien</small></div><span class="badge b-s"><svg width="13" height="13"><use href="#i-check"/></svg>Sudah mulai 08.05</span></a>
+        <a class="row" href="#" style="grid-template-columns:1fr auto"><div class="doc">dr. Lestari Wulandari, Sp.M<small>Mata · 09.30 (09.25-09.40) · 20 pasien</small></div><span class="badge b-s"><svg width="13" height="13"><use href="#i-check"/></svg>Tepat waktu</span></a>
+      </section>
+    </div>
+  </main>
+</div>
+
+<section class="sheet">
+  <h2>Warna</h2>
+  <div class="sw">
+    <div><i style="background:var(--color-primary)"></i>primary #2F66E0</div>
+    <div><i style="background:var(--color-primary-soft)"></i>primary-soft</div>
+    <div><i style="background:var(--color-surface)"></i>surface</div>
+    <div><i style="background:var(--color-surface-alt)"></i>surface-alt</div>
+    <div><i style="background:var(--color-chart-2)"></i>chart-2</div>
+    <div><i style="background:var(--color-success-soft)"></i>success-soft</div>
+    <div><i style="background:var(--color-warning-soft)"></i>warning-soft</div>
+    <div><i style="background:var(--color-danger-soft)"></i>danger-soft</div>
+  </div>
+  <h2>Komponen dan state</h2>
+  <div class="demo">
+    <span class="pill main-act">Aksi utama<span class="circ"><svg width="16" height="16" style="color:var(--color-primary)"><use href="#i-arrow"/></svg></span></span>
+    <span class="pill main-act" style="opacity:.5">Nonaktif<span class="circ"><svg width="16" height="16" style="color:var(--color-primary)"><use href="#i-arrow"/></svg></span></span>
+    <span class="pill" style="outline:2px solid var(--color-focus-ring);outline-offset:2px"><span class="circ"><svg width="16" height="16"><use href="#i-clock"/></svg></span>Fokus</span>
+    <span class="chip on">Chip terpilih</span><span class="chip">Chip</span>
+    <span class="badge b-s">Hadir</span><span class="badge b-w">Terlambat</span><span class="badge b-d">Batal</span><span class="tag soft">17 dibaca</span><span class="tag">+75 mnt</span>
+  </div>
+</section>
+</body>
+</html>

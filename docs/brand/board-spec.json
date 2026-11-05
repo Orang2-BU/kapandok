@@ -1,0 +1,28 @@
+{
+  "brand": "KapanDok",
+  "tagline": "Jam datang yang pas, tanpa antre lama",
+  "brief": "Sistem AI untuk rumah sakit yang memprediksi jam mulai praktik dokter dan mengirim jam datang pribadi ke setiap pasien lewat WhatsApp. Dipakai petugas poli, admin RS, dan pasien rawat jalan.",
+  "adjectives": ["tepat", "tenang", "terpercaya", "klinis"],
+  "criteria": "Terbaca sebagai layanan kesehatan, tidak klise, jelas di 16 px, tetap jalan dalam satu warna.",
+  "industry": "health",
+  "nav": ["Jadwal dokter", "Cek jam datang", "Untuk RS"],
+  "brand_color": "#2F66E0",
+  "greyscale": false,
+  "final": true,
+  "designer": "Tim Hadi Sudah Membaik",
+  "concepts": [
+    {
+      "name": "Plus Waktu",
+      "symbol": "final/kapandok-symbol.svg",
+      "lockup": "final/kapandok-horizontal.svg",
+      "stacked": "final/kapandok-stacked.svg",
+      "idea": "Tanda plus kesehatan yang di satu kuadrannya berjalan seperempat putaran jam.",
+      "rationale": [
+        "Plus langsung terbaca sebagai layanan kesehatan",
+        "Sapuan seperempat jam = waktu yang sudah diperhitungkan",
+        "Dibangun dari satu lebar batang dan satu radius, kuat di favicon"
+      ]
+    }
+  ],
+  "recommendation": "Plus Waktu dipakai sebagai logo utama KapanDok."
+}

@@ -1,0 +1,7 @@
+web/node_modules/
+web/.next/
+web/*.tsbuildinfo
+web/next-env.d.ts
+web/.browser-tmp/
+.env*
+*.log

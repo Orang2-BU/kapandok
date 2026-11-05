@@ -1,0 +1,53 @@
+{
+  "_sumber": "Persona: docs/09-MOCKUP-FASE0.md. Ambang: docs/03-ARCHITECTURE.md. Timeline: docs/09-MOCKUP-FASE0.md. Perubahan formulir hanya state tampilan, tidak mengubah skenario inti.",
+  "tanggal": "2026-11-09",
+  "pengguna": [
+    {
+      "id": "rahmat",
+      "nama": "Rahmat Hidayat",
+      "peran": "Petugas poli"
+    },
+    {
+      "id": "wulan",
+      "nama": "Wulan Sari",
+      "peran": "Admin RS"
+    }
+  ],
+  "pengaturan": {
+    "ambang_rentang": 30,
+    "ambang_perubahan": 10,
+    "batas_konfirmasi": 15
+  },
+  "timeline": [
+    {
+      "jam": "07.30",
+      "judul": "Operasi di OK 2 dimulai",
+      "catatan": "Estimasi selesai 08.00"
+    },
+    {
+      "jam": "08.00",
+      "judul": "Operasi melewati estimasi",
+      "catatan": "Sinyal dari rumah sakit"
+    },
+    {
+      "jam": "08.40",
+      "judul": "Operasi berjalan 40 menit melewati estimasi",
+      "catatan": "Prediksi dihitung kembali"
+    },
+    {
+      "jam": "08.40",
+      "judul": "Prediksi mulai 10.15",
+      "catatan": "Rentang 10.05-10.30, konfirmasi dikirim ke dokter"
+    },
+    {
+      "jam": "08.41",
+      "judul": "dr. Rina: Sesuai prediksi",
+      "catatan": "Konfirmasi satu ketukan melalui WhatsApp"
+    },
+    {
+      "jam": "08.43",
+      "judul": "22 pasien menerima jam datang baru",
+      "catatan": "Pesan terkirim ke seluruh antrean"
+    }
+  ]
+}

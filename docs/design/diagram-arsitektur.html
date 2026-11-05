@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Diagram Arsitektur KapanDok</title>
+<link rel="stylesheet" href="preview-tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1600px; height: 900px; font-family: "Plus Jakarta Sans", system-ui, sans-serif; background: #fff; color: var(--color-on-surface); padding: 44px 52px; position: relative; }
+  h1 { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; }
+  h1 span { color: var(--color-on-surface-subtle); font-weight: 400; }
+  .sub { font-size: 15px; color: var(--color-on-surface-muted); margin-top: 6px; }
+  .box { position: absolute; border-radius: 20px; padding: 18px 20px; background: var(--color-surface); border: 1px solid var(--color-outline); }
+  .box h3 { font-size: 17px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+  .box p, .box li { font-size: 13.5px; color: var(--color-on-surface-muted); line-height: 1.45; }
+  .box ul { padding-left: 18px; margin-top: 8px; }
+  .box .tag { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--color-primary-soft); color: var(--color-on-primary-soft); }
+  .core { background: var(--color-surface-alt); }
+  .ml { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .ml h3, .ml li, .ml p { color: #fff; }
+  .ml .m { background: rgba(255,255,255,.12); border-radius: 12px; padding: 10px 12px; margin-top: 10px; }
+  .ml .m b { display: block; font-size: 14px; }
+  .ml .m span { font-size: 12.5px; opacity: .92; }
+  .mk { width: 10px; height: 10px; border-radius: 3px; background: var(--color-primary); display: inline-block; }
+  .ml .mk { background: #fff; }
+  svg.lines { position: absolute; inset: 0; pointer-events: none; }
+  .lbl { position: absolute; font-size: 12.5px; font-weight: 600; color: var(--color-on-primary-soft); background: #fff; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--color-outline); white-space: nowrap; }
+  .rule { position: absolute; left: 52px; right: 52px; bottom: 34px; display: flex; justify-content: space-between; font-size: 13px; color: var(--color-on-surface-muted); border-top: 1px solid var(--color-outline); padding-top: 12px; }
+  .rule b { color: var(--color-on-surface); }
+  .sim { font-size: 12px; font-weight: 600; background: var(--color-warning-soft); color: var(--color-on-warning-soft); padding: 4px 10px; border-radius: 999px; }
+</style>
+</head>
+<body>
+  <h1><span>KapanDok</span> Arsitektur sistem</h1>
+  <p class="sub">Dari sinyal rumah sakit ke jam datang pribadi setiap pasien. Model menghitung, kode yang memutuskan.</p>
+
+  <div class="box" style="left:52px; top:170px; width:300px; height:250px">
+    <h3><span class="mk"></span>SIMRS mitra</h3>
+    <ul><li>Jadwal praktik &amp; antrean</li><li>Status kamar operasi</li><li>Daftar visite rawat inap</li><li>Riwayat jam mulai praktik</li></ul>
+    <span class="tag">Vendor bersifat internal</span>
+  </div>
+  <div class="box" style="left:52px; top:470px; width:300px; height:150px">
+    <h3><span class="mk"></span>Adapter sistem-agnostik</h3>
+    <p>REST API, bentuk data mengikuti HL7 FHIR (Schedule, Slot, Appointment). Ganti SIMRS tanpa ubah inti.</p>
+  </div>
+
+  <div class="box core" style="left:470px; top:170px; width:400px; height:450px">
+    <h3><span class="mk"></span>Inti KapanDok (Next.js + PostgreSQL)</h3>
+    <ul>
+      <li>Menyimpan sesi, prediksi, kunjungan, pesan</li>
+      <li>Aturan keputusan dengan ambang di Pengaturan:
+        <ul><li>rentang prediksi &gt; 30 mnt atau tanpa sinyal pada <span style="white-space:nowrap">T-60</span> → tanya dokter</li><li>jam datang berubah ≥ 10 mnt → kirim pembaruan</li><li>jam datang tidak pernah lebih awal dari slot awal</li><li>jadwal ulang tanpa pilihan 30 mnt → petugas</li></ul></li>
+      <li>Webhook WhatsApp: status terkirim, dibaca, balasan tombol</li>
+      <li>Log aktivitas untuk audit</li>
+    </ul>
+    <span class="tag">Data pribadi minimal, UU PDP</span>
+  </div>
+
+  <div class="box ml" style="left:470px; top:650px; width:400px; height:170px; padding:14px 18px">
+    <h3><span class="mk"></span>Layanan model (Python FastAPI)</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <div class="m"><b>Model 1</b><span>Jam mulai: kuantil + conformal 90%</span></div>
+      <div class="m"><b>Model 2</b><span>Durasi konsultasi &amp; peluang tidak hadir</span></div>
+      <div class="m"><b>Model 3</b><span>Optimasi jam datang (SAA)</span></div>
+    </div>
+  </div>
+
+  <div class="box" style="left:990px; top:170px; width:260px; height:150px">
+    <h3><span class="mk"></span>WhatsApp Business API</h3>
+    <p>Template pesan + tombol balasan cepat (maks 3 per pesan). Balasan masuk lewat webhook (dua arah).</p>
+  </div>
+  <div class="box" style="left:1330px; top:120px; width:220px; height:150px">
+    <h3>Dokter</h3>
+    <p>Satu ketukan: Sesuai prediksi, Ubah jam mulai, Batal praktik. Hanya bila sinyal kurang.</p>
+  </div>
+  <div class="box" style="left:1330px; top:300px; width:220px; height:170px">
+    <h3>Pasien</h3>
+    <p>Saran berangkat, perkiraan dipanggil, tombol Hadir / Jadwal ulang. Tanpa aplikasi baru.</p>
+  </div>
+  <div class="box" style="left:990px; top:500px; width:560px; height:120px">
+    <h3><span class="mk"></span>Web KapanDok</h3>
+    <p>Petugas poli: hari ini, detail sesi, tindak lanjut. Admin: laporan, pengaturan, integrasi. Pasien: cek jadwal dokter dan jam datang via kode booking.</p>
+  </div>
+
+  <svg class="lines" viewBox="0 0 1600 900" width="1600" height="900">
+    <defs><marker id="ar2" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0 0 5 10 10z" fill="#2F66E0"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#2F66E0"/></marker></defs>
+    <g stroke="#2F66E0" stroke-width="2.2" fill="none" marker-end="url(#ar)">
+      <path d="M202 420 V466"/>
+      <path d="M352 545 H466"/>
+      <path d="M650 620 V646"/>
+      <path d="M690 646 V624"/>
+      <path d="M870 245 H986"/>
+      <path d="M1254 222 L1326 196" marker-start="url(#ar2)"/>
+      <path d="M1254 286 L1326 368" marker-start="url(#ar2)"/>
+      <path d="M870 560 H986"/>
+    </g>
+  </svg>
+  <span class="lbl" style="left:365px; top:520px">sinyal</span>
+  <span class="lbl" style="left:700px; top:626px">state JSON ⇄ hasil</span>
+  <span class="lbl" style="left:885px; top:220px">kirim pesan</span>
+  <span class="lbl" style="left:890px; top:535px">tampilan</span>
+
+  <div class="rule"><span><b>Alur:</b> sinyal masuk → prediksi + rentang → konfirmasi dokter bila perlu → optimasi jam datang → WhatsApp pasien → pantau &amp; tindak lanjut</span><span class="sim">Data simulasi pada tahap ini</span></div>
+</body>
+</html>

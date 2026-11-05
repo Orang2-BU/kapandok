@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T10:58:29.897719+00:00",
+  "title": "Design System: KapanDok",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Biru KapanDok"
+      },
+      "neutral": {
+        "role": "neutral",
+        "displayName": "Kanvas abu muda"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Kartu putih"
+      },
+      "inverse": {
+        "role": "neutral",
+        "displayName": "Sorotan navy"
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating",
+        "value": "0 24px 48px -12px rgba(37,37,39,.20)",
+        "purpose": "Lapisan melayang; bukan panel dashboard."
+      }
+    ],
+    "motion": [
+      {
+        "name": "interaction",
+        "value": "200ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Transisi kontrol; nonaktif pada reduced motion."
+      },
+      {
+        "name": "sidebar-layout",
+        "value": "220ms ease",
+        "purpose": "Lebar sidebar dan margin area kerja; nonaktif pada reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "768px"
+      },
+      {
+        "name": "desktop",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tombol primary",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Tombol primary",
+      "html": "<button class=\"ds-button-primary\">Pantau sesi</button>",
+      "css": ".ds-button-primary{font-family:var(--font-jakarta, sans-serif);background:var(--color-primary);color:var(--color-on-primary);border:0;border-radius:var(--radius-full);padding:8px 16px;min-height:46px;font-size:15px;font-weight:500;cursor:pointer;transition:background 200ms ease;}.ds-button-primary:hover{filter:brightness(.96);}.ds-button-primary:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:3px;}.ds-button-primary:active{transform:scale(.98);}"
+    },
+    {
+      "name": "Tombol secondary",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Tombol secondary",
+      "html": "<button class=\"ds-button-secondary\">Lihat jadwal</button>",
+      "css": ".ds-button-secondary{font-family:var(--font-jakarta, sans-serif);background:var(--color-secondary);color:var(--color-on-secondary);border:0;border-radius:var(--radius-full);padding:8px 16px;min-height:46px;font-size:15px;font-weight:500;cursor:pointer;transition:background 200ms ease;}.ds-button-secondary:hover{filter:brightness(.96);}.ds-button-secondary:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:3px;}.ds-button-secondary:active{transform:scale(.98);}"
+    },
+    {
+      "name": "Cari pasien",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Cari pasien",
+      "html": "<label class=\"ds-search\">Cari pasien<input placeholder=\"Nama atau kode booking\" /></label>",
+      "css": ".ds-search{font-family:var(--font-jakarta, sans-serif);display:grid;gap:8px;color:var(--color-on-surface);font-size:14px}.ds-search input{font:inherit;background:var(--color-surface-alt);color:var(--color-on-surface);border:1px solid var(--color-outline);border-radius:var(--radius-full);padding:12px 16px}.ds-search input:hover{border-color:var(--color-primary)}.ds-search input:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:3px;}"
+    },
+    {
+      "name": "Navigasi aktif",
+      "kind": "nav",
+      "refersTo": "nav-active",
+      "description": "Navigasi aktif",
+      "html": "<nav aria-label=\"Contoh navigasi\"><a class=\"ds-nav\" href=\"#\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"1\"/></svg>Dashboard</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-jakarta, sans-serif);display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--color-surface);color:var(--color-on-surface);border-radius:var(--radius-sm);font-size:14px;font-weight:600;text-decoration:none}.ds-nav svg{color:var(--color-primary)}.ds-nav:hover{background:var(--color-primary-soft)}.ds-nav:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:3px;}"
+    },
+    {
+      "name": "Label simulasi",
+      "kind": "chip",
+      "refersTo": "sim-label",
+      "description": "Label simulasi",
+      "html": "<span class=\"ds-badge\">Data simulasi</span>",
+      "css": ".ds-badge{font-family:var(--font-jakarta, sans-serif);display:inline-flex;padding:6px 10px;border-radius:var(--radius-full);background:var(--color-warning-soft);color:var(--color-on-warning-soft);font-size:12px;font-weight:500}"
+    },
+    {
+      "name": "Panel ringkasan",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Panel ringkasan",
+      "html": "<section class=\"ds-panel\"><h3>Sesi praktik</h3><strong>5</strong><p>Data simulasi</p></section>",
+      "css": ".ds-panel{font-family:var(--font-jakarta, sans-serif);padding:24px;background:var(--color-surface);color:var(--color-on-surface);border-radius:var(--radius-lg)}.ds-panel h3,.ds-panel p{margin:0;font-size:14px;color:var(--color-on-surface-muted);font-weight:400}.ds-panel strong{display:block;margin:8px 0;font-size:30px;font-weight:600;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Koordinasi poli yang tenang",
+    "overview": "Kanvas abu muda dengan kartu putih, hierarki tegas, dan area kerja penuh lebar mengikuti revisi pengguna dengan acuan layout K-DASP. **Biru adalah warna utama**: tombol utama, menu yang dipilih, chip terpilih, jam prediksi terpenting, dan seri data utama di grafik. Kartu putih berada di atas kanvas abu kebiruan yang lembut supaya serasi dengan biru dan nyaman dilihat lama di layar poli. Status memakai badge pastel dengan teks gelap, bukan warna pekat. Angka besar berbobot tegas menjadi pusat perhatian di setiap panel. K-DASP memberi acuan struktur; identitas layanan kesehatan KapanDok tetap biru.",
+    "keyCharacteristics": [
+      "Kanvas abu muda, kartu putih, status pastel.",
+      "Sidebar klik yang mengubah lebar area kerja.",
+      "Angka tegas dan informasi operasional yang mudah dipindai."
+    ],
+    "rules": [],
+    "dos": [
+      "Do gunakan kanvas abu muda dan kartu putih dengan aksen biru KapanDok.",
+      "Do biarkan area kerja memenuhi lebar tersisa dan mereflow saat sidebar desktop ditoggle.",
+      "Do pertahankan label Data simulasi, fokus terlihat, dan navigasi keyboard."
+    ],
+    "donts": [
+      "Don't ubah sidebar desktop menjadi overlay atau membuka label hanya karena hover.",
+      "Don't menyalin identitas warna K-DASP; referensinya adalah struktur layout.",
+      "Don't memakai bayangan panel, gradasi, atau glassmorphism."
+    ]
+  }
+}

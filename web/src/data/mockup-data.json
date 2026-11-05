@@ -1,0 +1,471 @@
+{
+  "_catatan": "DATA SIMULASI untuk mockup. Snapshot pukul 08.50, Senin 9 November 2026 [asumsi tanggal demo].",
+  "rumah_sakit": "RS AR Fachrudin UMS",
+  "snapshot": "08.50",
+  "sesi": [
+    {
+      "id": "s-pd-rina",
+      "poli": "Penyakit Dalam",
+      "dokter": "dr. Rina Setyaningsih, Sp.PD",
+      "jadwal": "09.00-13.00",
+      "prediksi_mulai": "10.15",
+      "rentang": "10.05-10.30",
+      "alasan": "Tindakan di OK 2 berjalan 40 menit melewati estimasi",
+      "konfirmasi_dokter": "Sesuai prediksi (08.41)",
+      "pasien": 22,
+      "status": "terlambat_terkonfirmasi"
+    },
+    {
+      "id": "s-og-bambang",
+      "poli": "Kebidanan dan Kandungan",
+      "dokter": "dr. Bambang Hartono, Sp.OG",
+      "jadwal": "08.00-12.00",
+      "prediksi_mulai": "08.05",
+      "rentang": "sudah mulai",
+      "alasan": "Praktik sudah berjalan sejak 08.05",
+      "konfirmasi_dokter": "Tidak perlu (sinyal cukup)",
+      "pasien": 18,
+      "status": "berjalan"
+    },
+    {
+      "id": "s-a-dewi",
+      "poli": "Anak",
+      "dokter": "dr. Dewi Anggraini, Sp.A",
+      "jadwal": "10.00-13.00",
+      "prediksi_mulai": "10.20",
+      "rentang": "10.10-10.35",
+      "alasan": "Masih ada 6 pasien visite rawat inap",
+      "konfirmasi_dokter": "Menunggu (dikirim 08.47)",
+      "pasien": 16,
+      "status": "menunggu_konfirmasi"
+    },
+    {
+      "id": "s-m-lestari",
+      "poli": "Mata",
+      "dokter": "dr. Lestari Wulandari, Sp.M",
+      "jadwal": "09.30-12.30",
+      "prediksi_mulai": "09.30",
+      "rentang": "09.25-09.40",
+      "alasan": "Tidak ada tindakan atau visite terjadwal",
+      "konfirmasi_dokter": "Tidak perlu (sinyal cukup)",
+      "pasien": 20,
+      "status": "tepat_waktu"
+    },
+    {
+      "id": "s-b-agus",
+      "poli": "Bedah",
+      "dokter": "dr. Agus Prasetyo, Sp.B",
+      "jadwal": "13.00-16.00",
+      "prediksi_mulai": "batal",
+      "rentang": "-",
+      "alasan": "Operasi darurat, dokter membatalkan praktik (08.32)",
+      "konfirmasi_dokter": "Batal praktik (08.32)",
+      "pasien": 14,
+      "status": "batal",
+      "pindah_slot": "9 dari 14 pasien sudah memilih slot pengganti"
+    }
+  ],
+  "antrean_rina": [
+    {
+      "antrean": 1,
+      "nama": "Ibu Hartini",
+      "jenis": "kontrol",
+      "slot_awal": "09.00",
+      "perkiraan_dipanggil": "10.15",
+      "jam_datang": "10.00",
+      "saran_berangkat": "09.30",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-5466"
+    },
+    {
+      "antrean": 2,
+      "nama": "Bapak Slamet Riyadi",
+      "jenis": "baru",
+      "slot_awal": "09.10",
+      "perkiraan_dipanggil": "10.20",
+      "jam_datang": "10.05",
+      "saran_berangkat": "09.40",
+      "status_pesan": "terkirim",
+      "kode_booking": "KD-9957"
+    },
+    {
+      "antrean": 3,
+      "nama": "Bapak Wahyu Nugroho",
+      "jenis": "kontrol",
+      "slot_awal": "09.20",
+      "perkiraan_dipanggil": "10.30",
+      "jam_datang": "10.15",
+      "saran_berangkat": "09.55",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-3106"
+    },
+    {
+      "antrean": 4,
+      "nama": "Ibu Endang Sulistyowati",
+      "jenis": "kontrol",
+      "slot_awal": "09.30",
+      "perkiraan_dipanggil": "10.35",
+      "jam_datang": "10.20",
+      "saran_berangkat": "09.40",
+      "status_pesan": "dibaca",
+      "kode_booking": "KD-6419"
+    },
+    {
+      "antrean": 5,
+      "nama": "Bapak Joko Susilo",
+      "jenis": "baru",
+      "slot_awal": "09.40",
+      "perkiraan_dipanggil": "10.40",
+      "jam_datang": "10.25",
+      "saran_berangkat": "10.00",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-4560"
+    },
+    {
+      "antrean": 6,
+      "nama": "Ibu Rini Astuti",
+      "jenis": "kontrol",
+      "slot_awal": "09.50",
+      "perkiraan_dipanggil": "10.50",
+      "jam_datang": "10.35",
+      "saran_berangkat": "10.15",
+      "status_pesan": "dibaca",
+      "kode_booking": "KD-9225"
+    },
+    {
+      "antrean": 7,
+      "nama": "Bapak Bambang Sutrisno",
+      "jenis": "kontrol",
+      "slot_awal": "10.00",
+      "perkiraan_dipanggil": "10.55",
+      "jam_datang": "10.40",
+      "saran_berangkat": "10.00",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-7090"
+    },
+    {
+      "antrean": 8,
+      "nama": "Ibu Yuliana Pratiwi",
+      "jenis": "baru",
+      "slot_awal": "10.10",
+      "perkiraan_dipanggil": "11.01",
+      "jam_datang": "10.46",
+      "saran_berangkat": "10.01",
+      "status_pesan": "terkirim",
+      "kode_booking": "KD-6572"
+    },
+    {
+      "antrean": 9,
+      "nama": "Bapak Agus Setiawan",
+      "jenis": "kontrol",
+      "slot_awal": "10.20",
+      "perkiraan_dipanggil": "11.10",
+      "jam_datang": "10.55",
+      "saran_berangkat": "10.25",
+      "status_pesan": "terkirim",
+      "kode_booking": "KD-3339"
+    },
+    {
+      "antrean": 10,
+      "nama": "Ibu Sumarni",
+      "jenis": "kontrol",
+      "slot_awal": "10.30",
+      "perkiraan_dipanggil": "11.15",
+      "jam_datang": "11.00",
+      "saran_berangkat": "10.15",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-9996"
+    },
+    {
+      "antrean": 11,
+      "nama": "Ibu Dwi Handayani",
+      "jenis": "baru",
+      "slot_awal": "10.40",
+      "perkiraan_dipanggil": "11.21",
+      "jam_datang": "11.06",
+      "saran_berangkat": "10.31",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-7708"
+    },
+    {
+      "antrean": 12,
+      "nama": "Ibu Sri Wahyuni",
+      "jenis": "kontrol",
+      "slot_awal": "10.50",
+      "perkiraan_dipanggil": "11.30",
+      "jam_datang": "11.15",
+      "saran_berangkat": "10.45",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-4812"
+    },
+    {
+      "antrean": 13,
+      "nama": "Bapak Teguh Santoso",
+      "jenis": "kontrol",
+      "slot_awal": "11.00",
+      "perkiraan_dipanggil": "11.35",
+      "jam_datang": "11.20",
+      "saran_berangkat": "11.00",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-2420"
+    },
+    {
+      "antrean": 14,
+      "nama": "Ibu Retno Kusumawati",
+      "jenis": "baru",
+      "slot_awal": "11.10",
+      "perkiraan_dipanggil": "11.41",
+      "jam_datang": "11.26",
+      "saran_berangkat": "11.06",
+      "status_pesan": "terkirim",
+      "kode_booking": "KD-6547"
+    },
+    {
+      "antrean": 15,
+      "nama": "Bapak Heru Purnomo",
+      "jenis": "kontrol",
+      "slot_awal": "11.20",
+      "perkiraan_dipanggil": "11.50",
+      "jam_datang": "11.35",
+      "saran_berangkat": "10.50",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-3402"
+    },
+    {
+      "antrean": 16,
+      "nama": "Ibu Ani Rahmawati",
+      "jenis": "kontrol",
+      "slot_awal": "11.30",
+      "perkiraan_dipanggil": "11.55",
+      "jam_datang": "11.40",
+      "saran_berangkat": "11.00",
+      "status_pesan": "terkirim",
+      "kode_booking": "KD-6155"
+    },
+    {
+      "antrean": 17,
+      "nama": "Bapak Supriyadi",
+      "jenis": "baru",
+      "slot_awal": "11.40",
+      "perkiraan_dipanggil": "12.01",
+      "jam_datang": "11.46",
+      "saran_berangkat": "11.21",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-8682"
+    },
+    {
+      "antrean": 18,
+      "nama": "Ibu Lilik Suryani",
+      "jenis": "kontrol",
+      "slot_awal": "11.50",
+      "perkiraan_dipanggil": "12.10",
+      "jam_datang": "11.55",
+      "saran_berangkat": "11.35",
+      "status_pesan": "dibaca",
+      "kode_booking": "KD-2684"
+    },
+    {
+      "antrean": 19,
+      "nama": "Bapak Eko Prasetyo",
+      "jenis": "kontrol",
+      "slot_awal": "12.00",
+      "perkiraan_dipanggil": "12.16",
+      "jam_datang": "12.01",
+      "saran_berangkat": "11.26",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-5281"
+    },
+    {
+      "antrean": 20,
+      "nama": "Ibu Nur Hidayah",
+      "jenis": "kontrol",
+      "slot_awal": "12.10",
+      "perkiraan_dipanggil": "12.21",
+      "jam_datang": "12.06",
+      "saran_berangkat": "11.31",
+      "status_pesan": "jadwal_ulang",
+      "kode_booking": "KD-6976"
+    },
+    {
+      "antrean": 21,
+      "nama": "Bapak Sigit Wibowo",
+      "jenis": "baru",
+      "slot_awal": "12.20",
+      "perkiraan_dipanggil": "12.26",
+      "jam_datang": "12.11",
+      "saran_berangkat": "11.51",
+      "status_pesan": "dibaca",
+      "kode_booking": "KD-5431"
+    },
+    {
+      "antrean": 22,
+      "nama": "Ibu Tri Lestari",
+      "jenis": "kontrol",
+      "slot_awal": "12.30",
+      "perkiraan_dipanggil": "12.36",
+      "jam_datang": "12.21",
+      "saran_berangkat": "11.36",
+      "status_pesan": "hadir",
+      "kode_booking": "KD-7473"
+    }
+  ],
+  "ringkasan_pesan_rina": {
+    "terkirim_total": 22,
+    "sudah_dibaca_total": 17,
+    "konfirmasi_hadir": 12,
+    "minta_jadwal_ulang": 1,
+    "dibaca_belum_membalas": 4,
+    "belum_dibaca": 5
+  },
+  "administrasi": {
+    "_sumber": "Persona: docs/09-MOCKUP-FASE0.md. Ambang: docs/03-ARCHITECTURE.md. Timeline: docs/09-MOCKUP-FASE0.md. Perubahan formulir hanya state tampilan, tidak mengubah skenario inti.",
+    "tanggal": "2026-11-09",
+    "pengguna": [
+      {
+        "id": "rahmat",
+        "nama": "Rahmat Hidayat",
+        "peran": "Petugas poli"
+      },
+      {
+        "id": "wulan",
+        "nama": "Wulan Sari",
+        "peran": "Admin RS"
+      }
+    ],
+    "pengaturan": {
+      "ambang_rentang": 30,
+      "ambang_perubahan": 10,
+      "batas_konfirmasi": 15
+    },
+    "timeline": [
+      {
+        "jam": "07.30",
+        "judul": "Operasi di OK 2 dimulai",
+        "catatan": "Estimasi selesai 08.00"
+      },
+      {
+        "jam": "08.00",
+        "judul": "Operasi melewati estimasi",
+        "catatan": "Sinyal dari rumah sakit"
+      },
+      {
+        "jam": "08.40",
+        "judul": "Operasi berjalan 40 menit melewati estimasi",
+        "catatan": "Prediksi dihitung kembali"
+      },
+      {
+        "jam": "08.40",
+        "judul": "Prediksi mulai 10.15",
+        "catatan": "Rentang 10.05-10.30, konfirmasi dikirim ke dokter"
+      },
+      {
+        "jam": "08.41",
+        "judul": "dr. Rina: Sesuai prediksi",
+        "catatan": "Konfirmasi satu ketukan melalui WhatsApp"
+      },
+      {
+        "jam": "08.43",
+        "judul": "22 pasien menerima jam datang baru",
+        "catatan": "Pesan terkirim ke seluruh antrean"
+      }
+    ]
+  },
+  "asisten": {
+    "_sumber": "DATA SIMULASI untuk P31 Asisten petugas. Pasien dan antrean diambil dari antrean_rina; slot pengganti, masa rujukan, nomor usulan, dan nomor log adalah tambahan simulasi. Lihat docs/09-MOCKUP-FASE0.md bagian P31.",
+    "pengguna": "rahmat",
+    "rekap": {
+      "jam": "08.51",
+      "permintaan": "Tolong rekap pasien dr. Rina hari ini yang belum konfirmasi hadir."
+    },
+    "analisis": {
+      "jam": "08.52",
+      "permintaan": "Ibu Nur Hidayah minta jadwal ulang. Bisa dipindah? Dampaknya apa?",
+      "kode_booking": "KD-6976",
+      "slot": [
+        {
+          "id": "SL-1111-0940",
+          "hari": "Rabu, 11 November 2026",
+          "jam": "09.40",
+          "catatan": "Paling awal"
+        },
+        {
+          "id": "SL-1111-1120",
+          "hari": "Rabu, 11 November 2026",
+          "jam": "11.20",
+          "catatan": "Sesi sama, lebih siang"
+        },
+        {
+          "id": "SL-1311-0910",
+          "hari": "Jumat, 13 November 2026",
+          "jam": "09.10",
+          "catatan": "Hari lain"
+        }
+      ],
+      "efek_antrean": "Perkiraan dipanggil antrean 21-22 bisa maju sekitar 5 menit. Perubahan di bawah ambang 10 menit, jadi tidak ada pesan baru ke pasien lain.",
+      "penanda": [
+        {
+          "label": "Jenis kunjungan",
+          "nilai": "Kontrol",
+          "sumber": "Pendaftaran"
+        },
+        {
+          "label": "Rujukan BPJS",
+          "nilai": "Berlaku sampai 27 November 2026. Ketiga slot masih di dalam masa berlaku.",
+          "sumber": "Data rujukan"
+        },
+        {
+          "label": "Penanda prioritas dari dokter",
+          "nilai": "Tidak ada",
+          "sumber": "Rekam jadwal poli"
+        }
+      ],
+      "usulan": {
+        "id": "U-0917",
+        "slot_id": "SL-1111-0940",
+        "berlaku_sampai": "09.02"
+      }
+    },
+    "aksi": {
+      "jam": "08.53",
+      "permintaan": "Oke, tolong jadwalkan.",
+      "wa_tertahan_sampai": "08.58",
+      "log_id": "LA-0917"
+    }
+  },
+  "laporan": {
+    "sumber": "docs/riset/lampiran-c/ringkasan.md",
+    "sesi": 300,
+    "cakupan": 93.4,
+    "mae": 16,
+    "strategi": [
+      {
+        "nama": "A. Kondisi sekarang",
+        "rerata": 35.5,
+        "median": 22.4,
+        "lebih60": 20.2,
+        "menganggur": 9.4
+      },
+      {
+        "nama": "B1. Reaktif ideal (batas atas)",
+        "rerata": 15.7,
+        "median": 10,
+        "lebih60": 3.7,
+        "menganggur": 21.6
+      },
+      {
+        "nama": "B2. Reaktif realistis",
+        "rerata": 27.7,
+        "median": 16.8,
+        "lebih60": 13.6,
+        "menganggur": 19.6
+      },
+      {
+        "nama": "C. KapanDok",
+        "rerata": 16.8,
+        "median": 9.4,
+        "lebih60": 4.6,
+        "menganggur": 22.3
+      }
+    ]
+  }
+}
