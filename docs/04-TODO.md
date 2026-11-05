@@ -130,3 +130,8 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - ✅ T38: komponen beranda AquaSeq/dashboard Pantara lebih dekat (Onest/Manrope, navigasi pil, kartu, motion blur/fade) serta rute OSRM otomatis dan pratinjau pesan perubahan jadwal. Menggantikan input menit manual T37, atas koreksi pengguna.
 
 - Bukti T38: 17 test, lint/typecheck/build/Knip lulus; 60 cek browser dan 15 PNG; uji OSRM nyata dari browser berhasil 6,7 km/9 menit/berangkat 10.51. Peringatan keamanan Next.js tetap dicatat. Belum push.
+
+## Pemisahan POV notifikasi pasien dan petugas
+- ✅ T39: hapus pratinjau WhatsApp pada P4; tampilkan di notifikasi P11 milik petugas, memakai koordinat alamat rumah terdaftar (simulasi), bukan GPS petugas/pasien. Fungsi pasien lainnya tetap.
+
+- T39: 17 test, build/typecheck/lint/Knip lulus; 61 cek browser. Bukti: p11-notifikasi-pasien.png dan p04-rute-otomatis.png.

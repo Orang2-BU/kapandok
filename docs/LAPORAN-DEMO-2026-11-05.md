@@ -77,3 +77,13 @@ Alur frontend kini menghitung perjalanan sistem, bukan meminta pasien menaksir m
 WhatsApp belum dikirim nyata. Tidak ada backend, penyimpanan lokasi pasien, atau trigger otomatis dari SIMRS. Lokasi rumah adalah contoh, uji GPS memakai mock; uji izin GPS fisik pengguna belum dilakukan. Tidak ada push/deploy. Peringatan keamanan Next.js bawaan tetap perlu ditangani sebelum publikasi.
 
 Preview: http://127.0.0.1:3000, /app/dashboard, /k/KD-4812. Bukti tambahan: mockup/p04-rute-otomatis.png dan mockup/rute-contoh-osrm.json. Rumus: jam datang ke poli dikurangi estimasi rute, cadangan dan parkir; tidak memakai jam dipanggil sebagai target tiba.
+
+
+## T39: pemisahan POV petugas dan pasien
+- P4: pratinjau WhatsApp dihapus, fungsi perjalanan dan kartu jam datang tetap.
+- P11: panel Notifikasi pasien dengan detail yang bisa dibuka dan tautan cepat dari Respons pasien. Petugas menghitung saran dari alamat rumah terdaftar KD-4812 pada seed (simulasi), tanpa Geolocation API.
+- Hasil perhitungan muncul sebagai saran pada notifikasi dan isi pratinjau pesan. Tidak menyatakan pesan sudah terkirim. State antarhalaman belum disinkronkan.
+- Fungsi pemanggilan rute dipakai bersama agar sumber estimasi konsisten. Tidak ada geocoding alamat teks; titik koordinat disiapkan pada data alamat simulasi.
+- Verifikasi: 17 test, lint/typecheck/build/Knip lulus; 61 cek browser. Uji memastikan preview tidak muncul di pasien, muncul di petugas, saran berasal dari alamat simpanan, dan tidak ada tombol GPS pada POV petugas. Tiga viewport tanpa overflow dan konsol bersih.
+- Build tetap menampilkan peringatan keamanan Next.js bawaan yang sudah dicatat. Screenshot diperbarui; belum push.
+- Preview petugas: http://127.0.0.1:3000/app/sesi/s-pd-rina#notifikasi-pasien. Preview pasien: http://127.0.0.1:3000/k/KD-4812.
