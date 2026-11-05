@@ -10,3 +10,4 @@ const strategi = source.split('\n').filter(line => /^\| (A\.|B1\.|B2\.|\*\*C\.)/
 });
 if (strategi.length !== 4) throw new Error('Empat strategi laporan harus tersedia.');
 writeFileSync('src/data/mockup-data.json', JSON.stringify({ ...seed, administrasi, asisten, laporan: { sumber: 'docs/riset/lampiran-c/ringkasan.md', sesi: 300, cakupan: 93.4, mae: 16, strategi } }, null, 2) + '\n');
+writeFileSync('src/data/travel-config.json', readFileSync('../docs/seed/travel-config.json', 'utf8'));

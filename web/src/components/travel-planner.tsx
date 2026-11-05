@@ -1,46 +1,66 @@
 'use client';
-import { useRef, useState } from 'react';
-import { LocateFixed, MapPin, ArrowUpRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { LocateFixed, MapPin, ArrowUpRight, Navigation, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { departureTime } from '@/lib/travel';
+import { departureTime, routeEstimate } from '@/lib/travel';
+import config from '@/data/travel-config.json';
+import type { Pasien, Sesi } from '@/lib/types';
 
-export function TravelPlanner({ arrival }: { arrival: string }) {
-  const [origin, setOrigin] = useState('');
+type Point = { latitude: number; longitude: number };
+type Estimate = ReturnType<typeof routeEstimate> & ReturnType<typeof departureTime>;
+export function TravelPlanner({ pasien, sesi, onDeparture }: { pasien: Pasien; sesi: Sesi; onDeparture: (time: string | null) => void }) {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+  const [origin, setOrigin] = useState<Point | null>(null);
+  const [result, setResult] = useState<Estimate | null>(null);
+  const [example, setExample] = useState(false);
   const request = useRef(0);
-  const [result, setResult] = useState<ReturnType<typeof departureTime> | null>(null);
-  const params = new URLSearchParams({ api: '1', destination: 'RS UMS A.R. Fachrudin, Jalan Adi Sucipto 167, Surakarta', travelmode: 'driving' });
-  if (origin) params.set('origin', origin);
+  const abort = useRef<AbortController | null>(null);
+  useEffect(() => () => { request.current++; abort.current?.abort(); }, []);
+  function begin() { const id = ++request.current; abort.current?.abort(); setResult(null); onDeparture(null); setLoading(true); return id; }
+  async function calculate(point: Point, id: number) {
+    if (id !== request.current) return;
+    setOrigin(point); setStatus('Menghitung rute jalan ke rumah sakit…');
+    const controller = new AbortController(); abort.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const url = `https://router.project-osrm.org/route/v1/driving/${point.longitude},${point.latitude};${config.destination.longitude},${config.destination.latitude}?overview=false`;
+      const response = await fetch(url, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+      if (!response.ok) throw new Error('Layanan rute belum tersedia. Coba lagi.');
+      const route = routeEstimate(await response.json());
+      if (id !== request.current) return;
+      const departure = departureTime(pasien.jam_datang, route.minutes, config.parkingMinutes + config.roadBufferMinutes);
+      setResult({ ...route, ...departure }); onDeparture(departure.time);
+      setStatus('Rute selesai dihitung. Rekomendasi berangkat sudah diperbarui.');
+    } catch (error) {
+      if (id !== request.current) return;
+      setStatus(error instanceof Error && error.name !== 'AbortError' ? error.message : 'Perhitungan rute belum berhasil. Periksa koneksi lalu coba lagi.');
+    } finally { clearTimeout(timeout); if (id === request.current) setLoading(false); }
+  }
   function locate() {
-    if (!navigator.geolocation) { setStatus('Lokasi tidak didukung. Isi lokasi awal atau durasi perjalanan sendiri.'); return; }
-    setLoading(true); setStatus('Mencari lokasi perangkat…');
-    const version = ++request.current;
-    navigator.geolocation.getCurrentPosition(position => {
-      if (version !== request.current) return;
-      setOrigin(`${position.coords.latitude},${position.coords.longitude}`);
-      setStatus('Lokasi siap. Buka rute untuk melihat durasi perjalanan, lalu isi durasinya di bawah.'); setLoading(false);
-    }, error => {
-      if (version !== request.current) return;
-      setLoading(false); setStatus(error.code === 1 ? 'Izin lokasi ditolak. Anda tetap bisa mengisi lokasi awal atau durasi sendiri.' : 'Lokasi belum tersedia. Coba lagi atau isi durasi sendiri.');
+    const id = begin(); setExample(false); setOrigin(null);
+    if (!navigator.geolocation) { setLoading(false); setStatus('Perangkat belum mendukung lokasi. Gunakan lokasi simulasi untuk mencoba alurnya.'); return; }
+    setStatus('Mencari lokasi perangkat…');
+    navigator.geolocation.getCurrentPosition(p => { void calculate(p.coords, id); }, error => {
+      if (id !== request.current) return;
+      setLoading(false); setStatus(error.code === 1 ? 'Izin lokasi ditolak. Izinkan lokasi di browser atau coba lokasi simulasi.' : 'Lokasi belum tersedia. Coba lagi atau gunakan lokasi simulasi.');
     }, { timeout: 10000, maximumAge: 60000 });
   }
-  return <section className="panel travel-planner" aria-labelledby="travel-title">
-    <h2 id="travel-title"><MapPin aria-hidden="true" />Rencanakan perjalanan</h2>
-    <p>Tujuan: RS UMS A.R. Fachrudin, Jl. Adi Sucipto No. 167, Surakarta.</p>
-    <label htmlFor="travel-origin">Lokasi awal atau alamat</label>
-    <input id="travel-origin" value={origin} onChange={e => { request.current++; setLoading(false); setOrigin(e.target.value); setStatus(''); }} placeholder="Contoh: rumah atau nama jalan" />
-    <Button variant="secondary" onClick={locate} disabled={loading}><LocateFixed aria-hidden="true" />{loading ? 'Mencari lokasi…' : 'Gunakan lokasi saya'}</Button>
-    <a className="button secondary" href={`https://www.google.com/maps/dir/?${params}`} target="_blank" rel="noopener noreferrer">Lihat rute di Google Maps<ArrowUpRight aria-hidden="true" /></a>
-    <p className="small muted">Lokasi disimpan selama halaman terbuka. Saat membuka rute, lokasi awal diteruskan ke Google Maps.</p>
+  const maps = new URLSearchParams({ api: '1', destination: `${config.destination.latitude},${config.destination.longitude}`, travelmode: 'driving' });
+  if (origin) maps.set('origin', `${origin.latitude},${origin.longitude}`);
+  return <section className="panel travel-planner" aria-labelledby="travel-title" aria-busy={loading}>
+    <span className="badge info"><Navigation aria-hidden="true" />Perjalanan ke rumah sakit</span>
+    <h2 id="travel-title">Kami hitungkan jam berangkat Anda.</h2>
+    <p>Durasi rute dari lokasi Anda dipadukan dengan jam datang ke poli, agar tidak datang terlalu awal atau terlambat.</p>
+    <p className="small muted">Dengan menekan tombol lokasi, koordinat diteruskan ke layanan rute OSRM. Lokasi tidak disimpan oleh aplikasi.</p>
+    <Button onClick={locate} disabled={loading}><LocateFixed aria-hidden="true" />{loading ? 'Sedang menghitung…' : 'Hitung dari lokasi saya'}</Button>
+    <Button variant="secondary" onClick={() => { const id = begin(); setExample(true); void calculate(config.example, id); }} disabled={loading}>Coba lokasi rumah simulasi</Button>
     <p role="status">{status}</p>
-    <form onChange={() => setResult(null)} onSubmit={e => { e.preventDefault(); const fields = new FormData(e.currentTarget); setResult(departureTime(arrival, Number(fields.get('travel')), Number(fields.get('buffer')))); }}>
-      <label htmlFor="travel-duration">Durasi perjalanan dari peta (menit)</label>
-      <input id="travel-duration" name="travel" type="number" min="1" max="720" step="1" required placeholder="Contoh: 30" />
-      <label htmlFor="travel-buffer">Waktu parkir dan berjalan ke poli (menit)</label>
-      <input id="travel-buffer" name="buffer" type="number" min="0" max="120" step="1" required defaultValue="10" />
-      <Button type="submit">Hitung saran berangkat</Button>
-    </form>
-    {result && <div className="travel-result" role="status"><p>Saran berangkat berdasarkan perjalanan Anda</p><strong className="metric">{result.time} WIB</strong>{result.previousDay && <p>Berangkat pada hari sebelumnya.</p>}<p>Agar tiba di poli pukul {arrival}. Estimasi ini memakai durasi yang Anda isi, belum memperbarui lalu lintas otomatis.</p><button type="button" className="button ghost" onClick={() => setResult(null)}>Hapus perhitungan</button></div>}
+    <div className="travel-destination"><MapPin aria-hidden="true" /><span><b>{config.destination.name}</b><small>{config.destination.address}</small></span></div>
+    {result && <>
+      <div className="travel-result" role="status"><span className="badge info">{example ? 'Lokasi simulasi' : 'Lokasi perangkat'} · Mobil</span><p>Saran berangkat</p><strong className="metric">{result.time} WIB</strong>{result.previousDay && <p>Berangkat pada hari sebelumnya.</p>}<dl><div><dt>Jarak rute</dt><dd>{result.kilometers.toLocaleString('id-ID', { maximumFractionDigits: 1 })} km</dd></div><div><dt>Estimasi perjalanan</dt><dd>{result.minutes} menit</dd></div><div><dt>Cadangan perjalanan</dt><dd>{config.roadBufferMinutes} menit</dd></div><div><dt>Parkir dan jalan ke poli</dt><dd>{config.parkingMinutes} menit</dd></div><div><dt>Target tiba di poli</dt><dd>{pasien.jam_datang} WIB</dd></div></dl><p className="small muted">Estimasi rute mobil dari OSRM/OpenStreetMap. Belum memperhitungkan kemacetan langsung; tidak menjamin waktu tiba.</p></div>
+      <section className="patient-message" aria-labelledby="message-title"><h3 id="message-title"><MessageCircle aria-hidden="true" />Pratinjau WhatsApp pasien</h3><p>{pasien.nama}, jadwal praktik {sesi.dokter} berubah dari {sesi.jadwal.slice(0, 5)} menjadi perkiraan {sesi.prediksi_mulai} WIB.</p><p>Anda diperkirakan dipanggil {pasien.perkiraan_dipanggil}. Datang ke poli pukul {pasien.jam_datang}. Berdasarkan lokasi {example ? 'rumah simulasi' : 'Anda'}, perjalanan sekitar {result.minutes} menit. Kami sarankan berangkat {result.time} WIB{result.previousDay ? ' pada hari sebelumnya' : ''}, termasuk waktu cadangan dan parkir.</p><p>Periksa pembaruan sebelum berangkat. Nomor antrean {pasien.antrean} · {pasien.kode_booking}.</p><small>Pratinjau simulasi, belum dikirim ke WhatsApp.</small></section>
+    </>}
+    <a className="button ghost" href={`https://www.google.com/maps/dir/?${maps}`} target="_blank" rel="noopener noreferrer">Lihat rute di Google Maps<ArrowUpRight aria-hidden="true" /></a>
   </section>;
 }
