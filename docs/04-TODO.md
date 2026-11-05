@@ -142,3 +142,6 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - ✅ Mode demo kini punya visual POV petugas/WhatsApp dokter/pasien dan aksi konfirmasi/balas, bukan sekadar teks timeline. Tidak ada pengiriman nyata.
 
 - T40: 17 test, build/typecheck/lint/Knip lulus; 67 cek browser pada 16 layar. Demo visual, fokus pencarian, scrollbar dan aksi P12 terverifikasi.
+
+## T41: CI dan paket deploy statis
+- ✅ Paket lokal: CI GitHub Actions, export Next.js, Dockerfile Nginx, petunjuk deploy manual Dokploy. Test 17, typecheck, lint, Knip, build 20 halaman dan actionlint lulus. Browser membuka rute inti. Uji image terblokir: Docker daemon lokal belum aktif. Workflow remote dan deploy belum diverifikasi karena belum ada commit/push atau deployment.

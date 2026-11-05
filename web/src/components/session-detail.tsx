@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { ArrowLeft, ArrowUpDown, CheckCheck, Clock3, MoreHorizontal, Search, Send } from 'lucide-react';
 import data from '@/data/mockup-data.json';
@@ -7,7 +8,10 @@ import { Panel, StatusBadge } from '@/components/shared';
 import { StaffNotification } from '@/components/staff-notification';
 import { DemoAction } from '@/components/demo-action';
 const filters = [{ label: 'Semua', value: '' }, { label: 'Belum dibaca', value: 'terkirim' }, { label: 'Hadir', value: 'hadir' }, { label: 'Jadwal ulang', value: 'jadwal_ulang' }];
-export function SessionDetail({ initialStatus, initialQuery }: { initialStatus: string; initialQuery: string }) {
+export function SessionDetail() {
+  const searchParams = useSearchParams();
+  const initialStatus = searchParams.get('status') ?? '';
+  const initialQuery = searchParams.get('q') ?? '';
   const [status, setStatus] = useState(filters.some(f => f.value === initialStatus) ? initialStatus : '');
   const [query, setQuery] = useState(initialQuery); const [descending, setDescending] = useState(false);
   const rina = data.sesi[0], summary = data.ringkasan_pesan_rina;
