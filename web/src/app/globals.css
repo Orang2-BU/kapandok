@@ -342,3 +342,5 @@ a.sidebar-link:hover { background: var(--color-primary-soft); }
 .landing-flow article p { color: var(--color-on-surface-muted); }
 .landing-footer { border-top: 1px solid var(--color-outline); margin-top: var(--spacing-2xl); padding: var(--spacing-lg) 0; color: var(--color-on-surface-muted); }
 @media(max-width: 767px) { .landing { padding: 0 var(--spacing-md); } .landing-hero { grid-template-columns: 1fr; gap: var(--spacing-lg); } .landing-copy h1 { font-size: var(--text-display-title); } .landing-header nav > a { display: none; } .landing-footer { align-items: flex-start; flex-direction: column; } }
+.landing-copy h1 > span { font-size: inherit; line-height: inherit; font-weight: inherit; margin: 0; }
+.landing-header nav > a, .landing-patient a, .landing-footer a { min-height: 44px; display: inline-flex; align-items: center; }

@@ -16,6 +16,8 @@ const page = await context.newPage();
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') errors.push(`${message.text()} ${message.location().url}`); });
 const screens = [
+  ['/', 'p00-beranda', 1440, 1000],
+  ['/app/asisten', 'p31-asisten', 1440, 1000],
   ['/app/dashboard', 'dashboard', 1440, 1000],
   ['/app', 'p10-hari-ini', 1440, 900],
   ['/app/sesi/s-pd-rina', 'p11-detail-sesi', 1440, 1100],
