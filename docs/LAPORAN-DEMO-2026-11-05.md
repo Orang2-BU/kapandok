@@ -37,3 +37,13 @@ Menyalakan kembali: `cd web && corepack pnpm@10.20.0 start` setelah build. Brows
 Frontend siap untuk demonstrasi mockup statis dengan data simulasi. Alur utama dan menu tambahan sudah diverifikasi; beranda baru memberi pembuka presentasi yang sebelumnya tidak tersedia. Model, backend, autentikasi, database, WhatsApp dan SIMRS belum diintegrasikan. Form admin berubah di state lokal dan kembali saat halaman dimuat ulang.
 
 Build menampilkan peringatan bahwa Next.js 16.4.0 yang dibawa repo terkena kerentanan yang diketahui. Build ulang berhasil dengan peringatan tersebut. Detail advisori belum diaudit pada pekerjaan ini; pembaruan keamanan perlu ditangani sebelum publikasi. Tidak ada push atau deployment dalam pekerjaan ini.
+
+
+## Pembaruan: animasi dan lokasi pasien
+- Animasi masuk bertahap pada beranda/panel dashboard, hover tombol dan ikon; nonaktif saat prefers-reduced-motion.
+- P4: alamat awal, tombol lokasi perangkat (diminta hanya saat ditekan), rute ke RS via Google Maps, durasi perjalanan dan parkir/jalan, serta hasil saran berangkat tambahan. Input diubah menghapus hasil lama agar tidak menyesatkan.
+- Lokasi hanya state halaman, diteruskan ke Google Maps saat tautan diklik. Izin ditolak dan timeout menyediakan jalur manual.
+- Jam seed tetap utuh. Perhitungan mengacu jam datang 11.15, bukan dipanggil 11.30; 30 menit perjalanan + 10 menit parkir menghasilkan 10.35. Jika melewati tengah malam, hasil ditandai hari sebelumnya.
+- Durasi rute belum otomatis: pengguna mengambil durasi dari peta, lalu memasukkannya. Tidak ada routing API atau lalu lintas langsung. Sumber alamat: situs resmi https://rs.ums.ac.id/.
+- Verifikasi ulang: 14 test, lint/typecheck/build/Knip lulus; 60 cek browser termasuk lokasi mock, penolakan izin, link origin, invalid input, reset dan reduced motion. Screenshot diperbarui. Uji GPS perangkat sungguhan belum dilakukan.
+- Peringatan keamanan Next.js bawaan tetap muncul pada build. Tidak ada push.

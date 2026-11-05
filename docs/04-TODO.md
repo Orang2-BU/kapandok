@@ -120,3 +120,8 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - Commit lokal per kelompok perubahan atas izin pengguna; push menunggu review pengguna.
 
 - Verifikasi T36 selesai: 58 cek browser pada 15 layar, screenshot diperbarui, konsol bersih. Preview http://127.0.0.1:3000. Peringatan keamanan Next.js dicatat untuk tindak lanjut sebelum publikasi.
+
+## Improvement lokasi dan gerakan, 5 November 2026
+- ✅ T37: animasi ringan beranda/dashboard/tombol dan estimasi berangkat di P4 dari lokasi atau durasi manual, atas permintaan pengguna. Angka seed tetap sebagai tampilan awal; hasil pribadi hanya state lokal.
+
+- T37 diverifikasi: 14 test, build/typecheck/lint/Knip lulus; 60 cek browser, konsol bersih. Lokasi tidak menghitung durasi otomatis: durasi diambil pengguna dari Google Maps, lalu dipakai kalkulator lokal.

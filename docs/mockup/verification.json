@@ -59,7 +59,9 @@
     "Schedule: local save and invalid time rejection",
     "History: date filter and empty state recovery",
     "Demo player: start, pause, speed, reset",
-    "Public schedule: accessible collapsed navigation, desktop layout, combined filters and reset"
+    "Public schedule: accessible collapsed navigation, desktop layout, combined filters and reset",
+    "Travel: manual calculation, invalid duration, reset, mocked location and permission denial, route origin",
+    "Motion: entrance enabled by preference, disabled for reduced motion"
   ],
   "consoleErrors": [],
   "screenshots": [
