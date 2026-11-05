@@ -47,3 +47,33 @@ Build menampilkan peringatan bahwa Next.js 16.4.0 yang dibawa repo terkena keren
 - Durasi rute belum otomatis: pengguna mengambil durasi dari peta, lalu memasukkannya. Tidak ada routing API atau lalu lintas langsung. Sumber alamat: situs resmi https://rs.ums.ac.id/.
 - Verifikasi ulang: 14 test, lint/typecheck/build/Knip lulus; 60 cek browser termasuk lokasi mock, penolakan izin, link origin, invalid input, reset dan reduced motion. Screenshot diperbarui. Uji GPS perangkat sungguhan belum dilakukan.
 - Peringatan keamanan Next.js bawaan tetap muncul pada build. Tidak ada push.
+
+
+## Revisi terbaru: Pantara/AquaSeq dan rute otomatis
+Bagian ini menggantikan keterbatasan input durasi manual pada pembaruan sebelumnya.
+
+### Perubahan
+- Dashboard: Onest, menu aktif pil, kartu dengan tekstur ringan, sorotan kanan, akun bawah sidebar, area menu yang bisa bergulir. Struktur mengikuti Pantara; isi dan identitas KapanDok dipertahankan.
+- Beranda: Manrope, hero lebar membulat, heading dengan dua bobot, tombol gelap dengan lingkaran panah, transisi masuk blur/fade. Struktur mengacu AquaSeq; tidak memakai foto/isi produk lain. Ini adaptasi visual, bukan klaim pixel-identik dengan dua situs berbeda.
+- P4: GPS atau lokasi rumah simulasi langsung memanggil OSRM Route API, tanpa input durasi manual. Koordinat RS diperiksa dari peta yang ditautkan https://rs.ums.ac.id/ dan disimpan di seed/travel-config.json.
+- Saran berangkat diperbarui pada kartu utama dan pratinjau WhatsApp. Pesan menyebut jadwal resmi dan prediksi baru, jam dipanggil, target datang, durasi rute, serta rekomendasi berangkat.
+- Hasil lama dihapus saat menghitung ulang atau rute gagal. Tidak ada durasi palsu saat layanan gagal; GPS ditolak ditangani. Tidak menyimpan lokasi; koordinat dikirim ke OSRM hanya setelah aksi pengguna.
+
+### Pemeriksaan
+| Cek | Perintah (web/) | Hasil |
+|---|---|---|
+| Test | corepack pnpm@10.20.0 test | 17 passed |
+| Lint | corepack pnpm@10.20.0 lint | Lulus |
+| Typecheck | corepack pnpm@10.20.0 typecheck | Lulus |
+| Build | corepack pnpm@10.20.0 build | Lulus setelah pengingat keamanan, peringatan Next.js tetap |
+| Dead code | corepack pnpm@10.20.0 dlx knip | Tanpa temuan |
+| Browser | BROWSER_PATH=/opt/brave-bin/brave corepack pnpm@10.20.0 shots | 60 cek, 15 PNG, konsol bersih |
+| Rute nyata | Browser tanpa mock ke OSRM | 6,7 km, 9 menit, saran 10.51, target 11.15 |
+| Visual | 375/768/1440, reduced motion | Tidak overflow; sidebar mobile, fokus dan navigasi diuji ulang |
+
+### Analisis dan batasan
+Alur frontend kini menghitung perjalanan sistem, bukan meminta pasien menaksir menit. Estimasi mobil dibulatkan ke atas dan diberi cadangan 5 menit serta parkir/jalan 10 menit. Nilai tersebut adalah asumsi demo, bukan jaminan tidak telat. Routing menggunakan server demo OSRM/OpenStreetMap dan bergantung jaringan, tanpa kemacetan langsung atau SLA produksi. Untuk produksi perlu penyedia rute yang disepakati, persetujuan penggunaan lokasi, dan worker pengiriman/rekomputasi saat sinyal dokter berubah.
+
+WhatsApp belum dikirim nyata. Tidak ada backend, penyimpanan lokasi pasien, atau trigger otomatis dari SIMRS. Lokasi rumah adalah contoh, uji GPS memakai mock; uji izin GPS fisik pengguna belum dilakukan. Tidak ada push/deploy. Peringatan keamanan Next.js bawaan tetap perlu ditangani sebelum publikasi.
+
+Preview: http://127.0.0.1:3000, /app/dashboard, /k/KD-4812. Bukti tambahan: mockup/p04-rute-otomatis.png dan mockup/rute-contoh-osrm.json. Rumus: jam datang ke poli dikurangi estimasi rute, cadangan dan parkir; tidak memakai jam dipanggil sebagai target tiba.

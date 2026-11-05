@@ -125,3 +125,8 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - ✅ T37: animasi ringan beranda/dashboard/tombol dan estimasi berangkat di P4 dari lokasi atau durasi manual, atas permintaan pengguna. Angka seed tetap sebagai tampilan awal; hasil pribadi hanya state lokal.
 
 - T37 diverifikasi: 14 test, build/typecheck/lint/Knip lulus; 60 cek browser, konsol bersih. Lokasi tidak menghitung durasi otomatis: durasi diambil pengguna dari Google Maps, lalu dipakai kalkulator lokal.
+
+## Revisi referensi dan rute otomatis
+- ✅ T38: komponen beranda AquaSeq/dashboard Pantara lebih dekat (Onest/Manrope, navigasi pil, kartu, motion blur/fade) serta rute OSRM otomatis dan pratinjau pesan perubahan jadwal. Menggantikan input menit manual T37, atas koreksi pengguna.
+
+- Bukti T38: 17 test, lint/typecheck/build/Knip lulus; 60 cek browser dan 15 PNG; uji OSRM nyata dari browser berhasil 6,7 km/9 menit/berangkat 10.51. Peringatan keamanan Next.js tetap dicatat. Belum push.

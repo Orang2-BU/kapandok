@@ -153,3 +153,10 @@ Pembuka presentasi dengan identitas KapanDok, label Data simulasi, tautan dashbo
 - Saran tambahan = jam datang ke poli - durasi perjalanan - waktu parkir/jalan. Seed dan jam semula tidak berubah; hasil berlabel berdasarkan perjalanan Anda. Perhitungan hari sebelumnya ditandai.
 - Belum ada routing API atau estimasi lalu lintas otomatis. Pasien mengambil durasi dari peta dan memasukkannya sendiri. Lokasi hanya state lokal; diteruskan ke Google Maps saat tautan dibuka. Izin ditolak/timeout tetap memungkinkan input manual.
 - Tujuan mengikuti alamat situs resmi RS (https://rs.ums.ac.id/): Jl. Adi Sucipto 167, Surakarta. Tidak mengarang koordinat tujuan.
+
+## Revisi pengguna: Pantara/AquaSeq dan durasi otomatis
+Revisi ini menggantikan input durasi manual di P4. GPS atau tombol lokasi rumah simulasi memanggil OSRM Route API dengan titik RS yang diperiksa dari peta situs resmi. Estimasi mobil dibulatkan ke atas, ditambah cadangan 5 menit dan parkir/jalan 10 menit. Jam berangkat = target datang ke poli dikurangi total tersebut. Ini estimasi jalan, belum ada lalu lintas langsung. Kegagalan rute tidak menghasilkan angka perjalanan palsu. Tidak ada geocoding alamat bebas atau pengiriman WA nyata.
+
+Koordinat tujuan dan contoh lokasi tersimpan di seed/travel-config.json dan disalin oleh data:sync. Lokasi perangkat hanya dikirim ke OSRM setelah tombol ditekan; tidak disimpan di server aplikasi. Tautan Google Maps memakai origin yang sama. Setelah berhasil, kartu utama P4 dan pratinjau pesan berubah sesuai hasil perhitungan.
+
+Atas permintaan pengguna untuk menyesuaikan referensi lebih dekat, revisi UI memakai Onest pada aplikasi (Pantara), Manrope pada beranda (AquaSeq), navigasi pil, akun bawah sidebar, kartu bertekstur halus, dan masuk dengan blur/fade. Ini pengecualian terhadap pilihan Jakarta dan larangan tekstur/depth pada desain sebelumnya berdasarkan instruksi pengguna. Identitas, isi medis, dan angka seed KapanDok tetap. Beranda mengikuti struktur hero AquaSeq, aplikasi mengikuti Pantara; bukan salinan aset/isi kedua produk. Referensi dibuka dan diperiksa langsung 5 November 2026.
