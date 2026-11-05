@@ -146,3 +146,10 @@ Menu yang sebelumnya berlabel Segera kini dapat dibuka: P28 Riwayat, P16 Dokter,
 
 ## P0 Beranda demo (`/`)
 Pembuka presentasi dengan identitas KapanDok, label Data simulasi, tautan dashboard petugas dan jadwal publik, pratinjau sesi dr. Rina serta jam datang KD-4812, alur tiga langkah, dan akses laporan. Semua angka berasal dari seed. Responsif 375/768/1440; tanpa pengiriman pesan nyata.
+
+## P4: perencana perjalanan dan gerakan, 5 November 2026
+- Atas permintaan pengguna: animasi masuk ringan beranda/dashboard serta hover/tekan tombol; prefers-reduced-motion menonaktifkan gerakan.
+- P4 memiliki lokasi awal manual atau Geolocation API setelah tombol ditekan, tautan rute Google Maps, input durasi 1-720 menit serta parkir/jalan 0-120 menit.
+- Saran tambahan = jam datang ke poli - durasi perjalanan - waktu parkir/jalan. Seed dan jam semula tidak berubah; hasil berlabel berdasarkan perjalanan Anda. Perhitungan hari sebelumnya ditandai.
+- Belum ada routing API atau estimasi lalu lintas otomatis. Pasien mengambil durasi dari peta dan memasukkannya sendiri. Lokasi hanya state lokal; diteruskan ke Google Maps saat tautan dibuka. Izin ditolak/timeout tetap memungkinkan input manual.
+- Tujuan mengikuti alamat situs resmi RS (https://rs.ums.ac.id/): Jl. Adi Sucipto 167, Surakarta. Tidak mengarang koordinat tujuan.
