@@ -311,3 +311,34 @@ a.sidebar-link:hover { background: var(--color-primary-soft); }
 .public-time-note { display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-top: var(--spacing-lg); color: var(--color-on-surface-muted); font-size: var(--text-body-sm); }
 @media(max-width: 1199px) { .settings-layout { grid-template-columns: 1fr; }.history-row { grid-template-columns: 2fr 1fr; }.public-page:has(.public-schedule) .public-header { flex-wrap: wrap; }.public-schedule .public-title { align-items: flex-start; flex-direction: column; } }
 @media(max-width: 767px) { .directory-row { flex-wrap: wrap; gap: var(--spacing-sm); }.directory-name { flex-basis: calc(100% - 60px); }.directory-row > .badge { margin-right: auto; }.directory-row .button { min-height: 44px; }.directory-name h3, .schedule-row h3, .history-row h3 { font-size: var(--text-body-md); }.schedule-row { grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); }.schedule-row > div { grid-column: 1 / -1; }.setting-row { align-items: flex-start; flex-direction: column; }.history-row { grid-template-columns: 1fr; }.history-row .button { width: fit-content; }.date-filter { width: 100%; }.public-page:has(.public-schedule) { padding: var(--spacing-md); }.public-page:has(.public-schedule) .public-header { display: block; }.public-page:has(.public-schedule) .public-header-bottom { margin-top: var(--spacing-md); }.public-tools, .public-booking-banner { align-items: stretch; flex-direction: column; }.public-tools .public-search { flex: none; }.public-filter { justify-content: space-between; }.public-filter select { flex: 1; max-width: calc(100% - 48px); }.public-schedule .public-doctors { grid-template-columns: 1fr; }.public-schedule .public-doctor { padding: var(--spacing-md); }.public-booking-banner { padding: var(--spacing-md); gap: var(--spacing-md); }.public-booking-banner .booking-link { justify-content: center; }.public-booking-banner p, .public-results, .public-time-note { font-size: var(--text-body-md); } }
+
+/* Beranda demo: adaptasi hierarki Pantara dengan token KapanDok. */
+.landing { max-width: 1200px; margin: auto; padding: 0 var(--spacing-xl); }
+.landing-header, .landing-header nav, .landing-footer, .landing-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); }
+.landing-header { min-height: 82px; border-bottom: 1px solid var(--color-outline); }
+.landing-header nav a { color: var(--color-on-surface-muted); }
+.landing-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: var(--spacing-2xl); padding: var(--spacing-2xl) 0; }
+.landing-copy { display: grid; gap: var(--spacing-lg); }
+.landing-copy h1 { font-size: var(--text-display-time); font-weight: 600; line-height: 1.15; }
+.landing-copy h1 span { color: var(--color-primary); }
+.landing-copy > p:not(.landing-kicker) { font-size: var(--text-body-md); color: var(--color-on-surface-muted); max-width: 520px; }
+.landing-kicker { color: var(--color-on-primary-soft); font-weight: 600; }
+.landing-actions { justify-content: flex-start; flex-wrap: wrap; }
+.landing-preview { background: var(--color-surface); border: 1px solid var(--color-outline); border-radius: var(--radius-xl); padding: var(--spacing-md); display: grid; gap: var(--spacing-md); }
+.landing-session, .landing-patient { padding: var(--spacing-lg); border-radius: var(--radius-lg); }
+.landing-session { background: var(--color-inverse); color: var(--color-on-inverse); }
+.landing-session p, .landing-patient p { display: flex; gap: var(--spacing-xs); align-items: center; }
+.landing-session h2, .landing-patient h2 { margin-top: var(--spacing-md); font-size: var(--text-headline-md); }
+.landing-time { display: grid; margin: var(--spacing-lg) 0; }
+.landing-time strong { font-size: var(--text-display-time); line-height: 1.2; }
+.landing-patient { background: var(--color-surface-alt); }
+.landing-times { display: flex; gap: var(--spacing-xl); margin: var(--spacing-md) 0; }
+.landing-times div { display: grid; }
+.landing-times strong { font-size: var(--text-metric); color: var(--color-primary); }
+.landing-patient a, .landing-footer a { display: inline-flex; align-items: center; gap: var(--spacing-sm); color: var(--color-on-primary-soft); }
+.landing-flow > p { color: var(--color-on-surface-muted); margin: var(--spacing-sm) 0 var(--spacing-lg); }
+.landing-flow article svg { color: var(--color-primary); }
+.landing-flow article h3 { margin: var(--spacing-md) 0 var(--spacing-sm); }
+.landing-flow article p { color: var(--color-on-surface-muted); }
+.landing-footer { border-top: 1px solid var(--color-outline); margin-top: var(--spacing-2xl); padding: var(--spacing-lg) 0; color: var(--color-on-surface-muted); }
+@media(max-width: 767px) { .landing { padding: 0 var(--spacing-md); } .landing-hero { grid-template-columns: 1fr; gap: var(--spacing-lg); } .landing-copy h1 { font-size: var(--text-display-title); } .landing-header nav > a { display: none; } .landing-footer { align-items: flex-start; flex-direction: column; } }

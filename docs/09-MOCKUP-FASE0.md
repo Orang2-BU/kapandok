@@ -7,7 +7,7 @@
 - Gunakan komponen frontend dari [21st.dev](https://21st.dev/) yang sesuai kebutuhan layar. Periksa sumber, lisensi, dan kebutuhan dependency setiap komponen sebelum mengadaptasinya. Sidebar Aceternity yang sudah diadaptasi di repo menjadi titik awal.
 - Adaptasi komponen mengikuti token resmi `08-DESIGN.md`, identitas biru KapanDok, bahasa Indonesia, aksesibilitas, dan responsivitas. Efek dekoratif referensi tidak otomatis menjadi bagian desain KapanDok.
 - Cakupan tetap frontend statis dengan data simulasi. Referensi ini tidak menambah halaman, backend, atau integrasi. Dependency di luar daftar yang disetujui tetap mengikuti aturan izin proyek.
-- Arahan tercatat; pemilihan komponen spesifik dan implementasi belum dilakukan.
+- Sidebar memakai adaptasi Aceternity yang sudah ada; transisi CSS dipertahankan. Beranda menggunakan pola panel dan tombol yang sama tanpa dependency tambahan.
 
 ## P10 Hari ini (`/app`, desktop 1440)
 1. **Rail kiri + bar atas** (08-DESIGN Components):
@@ -143,3 +143,6 @@ Tambahan atas permintaan pengguna (12 Okt 2026). Data: `docs/seed/asisten-mockup
 
 ## Perluasan mockup atas permintaan pengguna, 12 Oktober 2026
 Menu yang sebelumnya berlabel Segera kini dapat dibuka: P28 Riwayat, P16 Dokter, P30 Poli, P18 Jadwal praktik, P19 Pengguna, P20 Pengaturan, P22 Mode demo. Ini perluasan presentasi Fase 0, bukan implementasi backend gelombang berikutnya. Form mengubah state lokal selama halaman terbuka; pemutar demo mengikuti timeline yang sama. Jadwal publik responsif desktop/mobile dengan pencarian, filter poli, dan kode booking. Data inti tidak berubah. Persona, timeline, dan nilai ambang terdokumentasi dipasok dari docs/seed/administrasi-mockup.json melalui data:sync.
+
+## P0 Beranda demo (`/`)
+Pembuka presentasi dengan identitas KapanDok, label Data simulasi, tautan dashboard petugas dan jadwal publik, pratinjau sesi dr. Rina serta jam datang KD-4812, alur tiga langkah, dan akses laporan. Semua angka berasal dari seed. Responsif 375/768/1440; tanpa pengiriman pesan nyata.
