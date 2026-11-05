@@ -12,7 +12,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     { label: 'Dashboard', href: '/app/dashboard', icon: LayoutDashboard },
     { label: 'Hari ini', href: '/app', icon: Clock3 },
     { label: 'Asisten', href: '/app/asisten', icon: MessageSquareText },
-    { label: 'Tindak lanjut', href: '/app/sesi/s-pd-rina?status=jadwal_ulang', icon: CircleAlert, badge: data.ringkasan_pesan_rina.minta_jadwal_ulang },
+    { label: 'Tindak lanjut', href: '/app/tindak-lanjut', icon: CircleAlert, badge: data.ringkasan_pesan_rina.minta_jadwal_ulang },
     { label: 'Pasien', href: '/app/sesi/s-pd-rina', icon: Users },
     { label: 'Riwayat', href: '/app/riwayat', icon: History },
     { label: 'Laporan', href: '/admin/laporan', icon: BarChart3 },
