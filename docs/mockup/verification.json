@@ -1,7 +1,13 @@
 {
-  "base": "http://127.0.0.1:3002",
-  "browser": "154.0.8037.98",
+  "base": "http://127.0.0.1:3000",
+  "browser": "155.0.8059.85",
   "checks": [
+    "/: 375px, no horizontal overflow",
+    "/: 768px, no horizontal overflow",
+    "/: 1440px, no horizontal overflow",
+    "/app/asisten: 375px, no horizontal overflow",
+    "/app/asisten: 768px, no horizontal overflow",
+    "/app/asisten: 1440px, no horizontal overflow",
     "/app/dashboard: 375px, no horizontal overflow",
     "/app/dashboard: 768px, no horizontal overflow",
     "/app/dashboard: 1440px, no horizontal overflow",
@@ -20,14 +26,65 @@
     "/admin/laporan: 375px, no horizontal overflow",
     "/admin/laporan: 768px, no horizontal overflow",
     "/admin/laporan: 1440px, no horizontal overflow",
+    "/app/riwayat: 375px, no horizontal overflow",
+    "/app/riwayat: 768px, no horizontal overflow",
+    "/app/riwayat: 1440px, no horizontal overflow",
+    "/admin/dokter: 375px, no horizontal overflow",
+    "/admin/dokter: 768px, no horizontal overflow",
+    "/admin/dokter: 1440px, no horizontal overflow",
+    "/admin/poli: 375px, no horizontal overflow",
+    "/admin/poli: 768px, no horizontal overflow",
+    "/admin/poli: 1440px, no horizontal overflow",
+    "/admin/pengguna: 375px, no horizontal overflow",
+    "/admin/pengguna: 768px, no horizontal overflow",
+    "/admin/pengguna: 1440px, no horizontal overflow",
+    "/admin/jadwal: 375px, no horizontal overflow",
+    "/admin/jadwal: 768px, no horizontal overflow",
+    "/admin/jadwal: 1440px, no horizontal overflow",
+    "/admin/pengaturan: 375px, no horizontal overflow",
+    "/admin/pengaturan: 768px, no horizontal overflow",
+    "/admin/pengaturan: 1440px, no horizontal overflow",
+    "/admin/demo: 375px, no horizontal overflow",
+    "/admin/demo: 768px, no horizontal overflow",
+    "/admin/demo: 1440px, no horizontal overflow",
     "Sidebar resizes workspace and hides collapsed wordmark",
     "Drawer: focus trap, Escape, scrim, close button, navigation, focus restoration",
     "P10/P11: clinic filter, patient search, status counts 5/12/1, empty state, reset, sorting, simulated resend dialog",
     "Patient: doctor search, invalid booking feedback, KD-4812 navigation",
-    "Report: sorting ascending and descending"
+    "Report: sorting ascending and descending",
+    "dokter: add, edit status, search empty state, correct active navigation",
+    "poli: add, edit status, search empty state, correct active navigation",
+    "pengguna: add, edit status, search empty state, correct active navigation",
+    "Settings: change, save, restore defaults on mobile",
+    "Schedule: local save and invalid time rejection",
+    "History: date filter and empty state recovery",
+    "Demo player: start, pause, speed, reset",
+    "Public schedule: accessible collapsed navigation, desktop layout, combined filters and reset"
   ],
   "consoleErrors": [],
   "screenshots": [
+    {
+      "route": "/",
+      "file": "p00-beranda.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/app/asisten",
+      "file": "p31-asisten.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
     {
       "route": "/app/dashboard",
       "file": "dashboard.png",
@@ -86,6 +143,83 @@
     {
       "route": "/admin/laporan",
       "file": "p15-laporan.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/app/riwayat",
+      "file": "riwayat.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/dokter",
+      "file": "admin-dokter.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/poli",
+      "file": "admin-poli.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/pengguna",
+      "file": "admin-pengguna.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/jadwal",
+      "file": "admin-jadwal.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/pengaturan",
+      "file": "admin-pengaturan.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "fullPage": true,
+      "provenance": "Playwright capture of the locally built KapanDok mockup; source data from project docs."
+    },
+    {
+      "route": "/admin/demo",
+      "file": "admin-demo.png",
       "viewport": {
         "width": 1440,
         "height": 900

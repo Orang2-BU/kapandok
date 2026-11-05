@@ -44,7 +44,7 @@
 | T33 | Fungsi asisten baca + analisis + cek hak akses | — | Should | ⬜ | Gelombang 1 setelah alur inti |
 | T34 | Usulan + jalankan + jeda batal WA + log | — | Should | ⬜ | Test tanpa konfirmasi → ditolak |
 | T35 | Integrasi LLM + P31 live + eval 40 + 10 | — | Should | ⬜ | 0 aksi tanpa konfirmasi |
-| T36 | P0 beranda demo + penyelarasan frontend Pantara/21st.dev | Codex | Must (presentasi) | 🟦 | Frontend statis; verifikasi dan screenshot sebelum selesai |
+| T36 | P0 beranda demo + penyelarasan frontend Pantara/21st.dev | Codex | Must (presentasi) | ✅ | 11 test, build/typecheck/lint/Knip lulus; 58 cek browser, 15 PNG; lihat LAPORAN-DEMO-2026-11-05.md |
 
 ## Alur Inti Check
 | Langkah | Status | Dicek |
@@ -118,3 +118,5 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - Target tetap frontend statis; tidak mengerjakan layanan model, database, auth, atau WhatsApp nyata.
 - T36: beranda demo, navigasi dan panel konsisten dengan referensi Pantara; sumber komponen Aceternity/21st.dev dicatat.
 - Commit lokal per kelompok perubahan atas izin pengguna; push menunggu review pengguna.
+
+- Verifikasi T36 selesai: 58 cek browser pada 15 layar, screenshot diperbarui, konsol bersih. Preview http://127.0.0.1:3000. Peringatan keamanan Next.js dicatat untuk tindak lanjut sebelum publikasi.
