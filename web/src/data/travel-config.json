@@ -1,7 +1,22 @@
 {
-  "destination": { "latitude": -7.5476865, "longitude": 110.7803561, "name": "RS UMS A.R. Fachrudin", "address": "Jl. Adi Sucipto No. 167, Surakarta" },
+  "destination": {
+    "latitude": -7.5476865,
+    "longitude": 110.7803561,
+    "name": "RS UMS A.R. Fachrudin",
+    "address": "Jl. Adi Sucipto No. 167, Surakarta"
+  },
   "source": "https://www.google.com/maps?q=RS%20UMS%20A.R.%20Facrudin&output=embed (ditautkan https://rs.ums.ac.id/), diperiksa 2026-11-05",
-  "example": { "latitude": -7.57, "longitude": 110.75, "label": "Rumah simulasi di Solo" },
+  "example": {
+    "latitude": -7.57,
+    "longitude": 110.75,
+    "label": "Rumah simulasi di Solo"
+  },
   "parkingMinutes": 10,
-  "roadBufferMinutes": 5
+  "roadBufferMinutes": 5,
+  "savedPatientAddress": {
+    "bookingCode": "KD-4812",
+    "label": "Alamat rumah simulasi, area Solo",
+    "latitude": -7.57,
+    "longitude": 110.75
+  }
 }

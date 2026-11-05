@@ -418,3 +418,8 @@ body { font-family: var(--font-onest), ui-sans-serif, sans-serif; }
 }
 @media(max-width:1199px) { .sidebar-account { margin-bottom: var(--spacing-md); } .landing { padding: 0 var(--spacing-lg); } .landing-hero { padding: var(--spacing-lg); min-height: 640px; } }
 @media(max-width:767px) { .landing { padding: 0 var(--spacing-md); } .landing-hero { grid-template-columns: 1fr; min-height: auto; } .landing-copy h1 { font-size: var(--text-display-title); } .landing-preview { transform: none; } .landing-patient { margin-left: 0; } .landing-flow h2 { font-size: var(--text-headline-md); } .overview-layout .summary-panel { min-height: 140px; } }
+.notification-summary { display: flex; align-items: center; gap: var(--spacing-md); min-height: 44px; padding: var(--spacing-sm) 0; color: var(--color-on-primary-soft); }
+.notification-summary small { display: block; }
+.notification-content { display: grid; gap: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--color-outline); }
+.notification-content > p:first-child { display: flex; align-items: center; gap: var(--spacing-sm); }
+.notification-content > .button { justify-self: start; }

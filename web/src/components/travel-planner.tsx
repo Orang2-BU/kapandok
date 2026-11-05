@@ -1,14 +1,14 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { LocateFixed, MapPin, ArrowUpRight, Navigation, MessageCircle } from 'lucide-react';
+import { LocateFixed, MapPin, ArrowUpRight, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { departureTime, routeEstimate } from '@/lib/travel';
+import { departureTime, routeEstimate, readRoadRoute } from '@/lib/travel';
 import config from '@/data/travel-config.json';
-import type { Pasien, Sesi } from '@/lib/types';
+import type { Pasien } from '@/lib/types';
 
 type Point = { latitude: number; longitude: number };
 type Estimate = ReturnType<typeof routeEstimate> & ReturnType<typeof departureTime>;
-export function TravelPlanner({ pasien, sesi, onDeparture }: { pasien: Pasien; sesi: Sesi; onDeparture: (time: string | null) => void }) {
+export function TravelPlanner({ pasien, onDeparture }: { pasien: Pasien; onDeparture: (time: string | null) => void }) {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
   const [origin, setOrigin] = useState<Point | null>(null);
@@ -24,10 +24,7 @@ export function TravelPlanner({ pasien, sesi, onDeparture }: { pasien: Pasien; s
     const controller = new AbortController(); abort.current = controller;
     const timeout = setTimeout(() => controller.abort(), 12000);
     try {
-      const url = `https://router.project-osrm.org/route/v1/driving/${point.longitude},${point.latitude};${config.destination.longitude},${config.destination.latitude}?overview=false`;
-      const response = await fetch(url, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
-      if (!response.ok) throw new Error('Layanan rute belum tersedia. Coba lagi.');
-      const route = routeEstimate(await response.json());
+      const route = await readRoadRoute(point, controller.signal);
       if (id !== request.current) return;
       const departure = departureTime(pasien.jam_datang, route.minutes, config.parkingMinutes + config.roadBufferMinutes);
       setResult({ ...route, ...departure }); onDeparture(departure.time);
@@ -59,7 +56,7 @@ export function TravelPlanner({ pasien, sesi, onDeparture }: { pasien: Pasien; s
     <div className="travel-destination"><MapPin aria-hidden="true" /><span><b>{config.destination.name}</b><small>{config.destination.address}</small></span></div>
     {result && <>
       <div className="travel-result" role="status"><span className="badge info">{example ? 'Lokasi simulasi' : 'Lokasi perangkat'} · Mobil</span><p>Saran berangkat</p><strong className="metric">{result.time} WIB</strong>{result.previousDay && <p>Berangkat pada hari sebelumnya.</p>}<dl><div><dt>Jarak rute</dt><dd>{result.kilometers.toLocaleString('id-ID', { maximumFractionDigits: 1 })} km</dd></div><div><dt>Estimasi perjalanan</dt><dd>{result.minutes} menit</dd></div><div><dt>Cadangan perjalanan</dt><dd>{config.roadBufferMinutes} menit</dd></div><div><dt>Parkir dan jalan ke poli</dt><dd>{config.parkingMinutes} menit</dd></div><div><dt>Target tiba di poli</dt><dd>{pasien.jam_datang} WIB</dd></div></dl><p className="small muted">Estimasi rute mobil dari OSRM/OpenStreetMap. Belum memperhitungkan kemacetan langsung; tidak menjamin waktu tiba.</p></div>
-      <section className="patient-message" aria-labelledby="message-title"><h3 id="message-title"><MessageCircle aria-hidden="true" />Pratinjau WhatsApp pasien</h3><p>{pasien.nama}, jadwal praktik {sesi.dokter} berubah dari {sesi.jadwal.slice(0, 5)} menjadi perkiraan {sesi.prediksi_mulai} WIB.</p><p>Anda diperkirakan dipanggil {pasien.perkiraan_dipanggil}. Datang ke poli pukul {pasien.jam_datang}. Berdasarkan lokasi {example ? 'rumah simulasi' : 'Anda'}, perjalanan sekitar {result.minutes} menit. Kami sarankan berangkat {result.time} WIB{result.previousDay ? ' pada hari sebelumnya' : ''}, termasuk waktu cadangan dan parkir.</p><p>Periksa pembaruan sebelum berangkat. Nomor antrean {pasien.antrean} · {pasien.kode_booking}.</p><small>Pratinjau simulasi, belum dikirim ke WhatsApp.</small></section>
+
     </>}
     <a className="button ghost" href={`https://www.google.com/maps/dir/?${maps}`} target="_blank" rel="noopener noreferrer">Lihat rute di Google Maps<ArrowUpRight aria-hidden="true" /></a>
   </section>;

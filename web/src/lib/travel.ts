@@ -1,3 +1,4 @@
+import config from '../data/travel-config.json';
 import { menit } from './format';
 
 export function departureTime(arrival: string, travel: number, buffer: number) {
@@ -14,4 +15,11 @@ export function routeEstimate(payload: unknown) {
   const minutes = Math.max(1, Math.ceil(route.duration / 60));
   if (minutes > 720) throw new Error('Perjalanan lebih dari 12 jam. Hubungi petugas untuk merencanakan kunjungan.');
   return { minutes, kilometers: route.distance / 1000 };
+}
+
+export async function readRoadRoute(point: { latitude: number; longitude: number }, signal: AbortSignal) {
+  const url = `https://router.project-osrm.org/route/v1/driving/${point.longitude},${point.latitude};${config.destination.longitude},${config.destination.latitude}?overview=false`;
+  const response = await fetch(url, { signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+  if (!response.ok) throw new Error('Layanan rute belum tersedia. Coba lagi.');
+  return routeEstimate(await response.json());
 }
