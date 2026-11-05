@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Check, Pause, Pencil, Play, Plus, RotateCcw, Search, X } from 'lucide-react';
 import data from '@/data/mockup-data.json';
 import { Button } from '@/components/ui/button';
+import { DemoScene } from '@/components/demo-scene';
 import { Panel, StatusBadge } from '@/components/shared';
 
 function Heading({ title, description, children }: { title: string; description: string; children?: React.ReactNode }) {
@@ -62,12 +63,12 @@ export function DemoPlayer() {
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(1);
   useEffect(() => {
-    if (!running) return;
+    if (!running || step === events.length - 1) return;
     const timer = window.setInterval(() => setStep(current => Math.min(current + 1, events.length - 1)), 2500 / speed);
     return () => window.clearInterval(timer);
-  }, [running, speed, events.length]);
+  }, [running, speed, events.length, step]);
   const finished = step === events.length - 1;
   const playing = running && !finished;
   const current = events[step];
-  return <><Heading title="Mode demo" description="Ikuti perjalanan satu sesi, dari sinyal rumah sakit sampai pasien menerima jam datang." /><div className="bento"><section className="panel overview-hero span5 demo-current"><span className="badge info">{playing ? 'Sedang diputar' : finished ? 'Pemutaran selesai' : 'Siap diputar'}</span><h2>{data.sesi[0].dokter}</h2><p className="display-time">{current.jam}</p><h3>{current.judul}</h3><p>{current.catatan}</p><small>Peristiwa {step + 1} dari {events.length}</small></section><Panel title="Alur sesi" className="span7"><ol className="demo-timeline">{events.map((event, index) => <li key={index}><button className={index === step ? 'selected' : ''} aria-current={index === step ? 'step' : undefined} onClick={() => { setRunning(false); setStep(index); }}><time>{event.jam}</time><span>{event.judul}</span>{index < step && <Check />}</button></li>)}</ol></Panel><div className="panel span12 demo-controls"><Button onClick={() => { if (finished) setStep(0); setRunning(!playing); }}>{playing ? <Pause /> : <Play />}{playing ? 'Jeda' : finished ? 'Putar ulang' : 'Mulai demo'}</Button><Button variant="secondary" onClick={() => { setStep(0); setRunning(false); }}><RotateCcw />Atur ulang</Button><label>Kecepatan<select aria-label="Kecepatan" value={speed} onChange={e => setSpeed(Number(e.target.value))}><option value={1}>1×</option><option value={2}>2×</option><option value={4}>4×</option></select></label><Link className="button ghost" href="/app/sesi/s-pd-rina">Buka detail sesi<ArrowUpRight /></Link></div></div></>;
+  return <><Heading title="Mode demo" description="Putar simulasi untuk melihat perubahan prediksi, konfirmasi dokter, dan pesan pasien." /><div className="bento"><section className="panel overview-hero span5 demo-current"><span className="badge info">{playing ? 'Sedang diputar' : finished ? 'Pemutaran selesai' : 'Siap diputar'}</span><h2>{data.sesi[0].dokter}</h2><p className="display-time">{current.jam}</p><h3>{current.judul}</h3><p>{current.catatan}</p><small>Peristiwa {step + 1} dari {events.length}</small></section><Panel title="Alur sesi" className="span7"><ol className="demo-timeline">{events.map((event, index) => <li key={index}><button className={index === step ? 'selected' : ''} aria-current={index === step ? 'step' : undefined} onClick={() => { setRunning(false); setStep(index); }}><time>{event.jam}</time><span>{event.judul}</span>{index < step && <Check />}</button></li>)}</ol></Panel><DemoScene key={step} step={step} onConfirm={() => { setRunning(false); setStep(4); }} /><div className="panel span12 demo-controls"><Button onClick={() => { if (finished) setStep(0); setRunning(!playing); }}>{playing ? <Pause /> : <Play />}{playing ? 'Jeda' : finished ? 'Putar ulang' : 'Mulai demo'}</Button><Button variant="secondary" onClick={() => { setStep(0); setRunning(false); }}><RotateCcw />Atur ulang</Button><label>Kecepatan<select aria-label="Kecepatan" value={speed} onChange={e => setSpeed(Number(e.target.value))}><option value={1}>1×</option><option value={2}>2×</option><option value={4}>4×</option></select></label><Link className="button ghost" href="/app/sesi/s-pd-rina">Buka detail sesi<ArrowUpRight /></Link></div></div></>;
 }
