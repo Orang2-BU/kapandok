@@ -5,7 +5,7 @@ AI system for hospital outpatient clinics (pilot: RS AR Fachrudin UMS, Solo) tha
 
 ## Users
 - **Patients** (outpatient, including elderly JKN/BPJS patients): receive one WhatsApp message with their personal arrival time; confirm with buttons (Hadir / Jadwal ulang).
-- **Doctors**: receive a WhatsApp message and answer with one tap (Tepat waktu / +15 / +30 / +60 / Batal) only when hospital signals are insufficient.
+- **Doctors**: receive a WhatsApp message and answer with one tap (Sesuai prediksi / Ubah jam mulai / Batal praktik) only when hospital signals are insufficient.
 - **Clinic staff (petugas poli)**: web dashboard (built separately by the team).
 - **Secondary audience**: hackathon judges reading the proposal appendix.
 

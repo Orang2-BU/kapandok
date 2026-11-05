@@ -1,3 +1,4 @@
+<!-- SUPERSEDED: arsip desain hijau. Acuan aktif: docs/08-DESIGN.md, palet biru #2F66E0. -->
 ---
 version: alpha
 name: "KapanDok"

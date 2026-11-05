@@ -4,7 +4,7 @@
 
 **Legenda:** ⬜ Todo · 🟦 In Progress · ✅ Done · ⛔ Blocked · ✂️ Dipotong (scope cut)
 
-**Target:** Fase 0 sebelum **15 Okt 2026 23.59 WIB** (proposal) · Fase 1-2 selama pembekalan 26 Okt-4 Nov 2026 · Fase 3 saat hackathon · **Update terakhir:** 2026-10-12
+**Target:** Fase 0 sebelum **15 Okt 2026 23.59 WIB** (proposal) · Fase 1-2 selama pembekalan 26 Okt-4 Nov 2026 · Fase 3 saat hackathon · **Update terakhir:** 2026-11-05
 
 ## Task
 | ID | Task | Pemilik | Prioritas | Status | Bukti verifikasi / Catatan |
@@ -44,6 +44,7 @@
 | T33 | Fungsi asisten baca + analisis + cek hak akses | — | Should | ⬜ | Gelombang 1 setelah alur inti |
 | T34 | Usulan + jalankan + jeda batal WA + log | — | Should | ⬜ | Test tanpa konfirmasi → ditolak |
 | T35 | Integrasi LLM + P31 live + eval 40 + 10 | — | Should | ⬜ | 0 aksi tanpa konfirmasi |
+| T36 | P0 beranda demo + penyelarasan frontend Pantara/21st.dev | Codex | Must (presentasi) | 🟦 | Frontend statis; verifikasi dan screenshot sebelum selesai |
 
 ## Alur Inti Check
 | Langkah | Status | Dicek |
@@ -100,6 +101,7 @@
 | Tanggal | Ringkasan |
 |---|---|
 | 2026-10-12 | TODO dibuat |
+| 2026-11-05 | Pengguna menetapkan Pantara sebagai referensi tambahan dan 21st.dev sebagai sumber komponen frontend; arahan dicatat di 09-MOCKUP-FASE0. Implementasi belum dimulai; status task tetap. |
 | 2026-10-12 | Logo Plus Waktu dipasang di web; P31 Asisten petugas (mockup) + F17 ditambahkan atas permintaan pengguna |
 
 
@@ -111,3 +113,8 @@ Dashboard `/app/dashboard` ditambahkan sesuai permintaan pengguna. Sidebar klik 
 - 🟦 Mockup halaman seluruh menu tanpa label Segera.
 - 🟦 Jadwal publik responsif, menu berikon, filter poli dan booking.
 - Validasi menyeluruh berjalan; task backend tetap berstatus semula.
+
+## Persiapan presentasi 5 November 2026
+- Target tetap frontend statis; tidak mengerjakan layanan model, database, auth, atau WhatsApp nyata.
+- T36: beranda demo, navigasi dan panel konsisten dengan referensi Pantara; sumber komponen Aceternity/21st.dev dicatat.
+- Commit lokal per kelompok perubahan atas izin pengguna; push menunggu review pengguna.

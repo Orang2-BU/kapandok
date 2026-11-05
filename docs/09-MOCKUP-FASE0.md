@@ -2,6 +2,13 @@
 
 > Susunan tiap layar dari atas ke bawah. Data: `docs/seed/mockup-data.json` (snapshot 08.50, Senin 9 November 2026). Token & komponen: `docs/08-DESIGN.md`. Semua teks di bawah adalah teks UI final (tanpa em-dash).
 
+## Arahan komponen dari pengguna, 5 November 2026
+- Referensi tambahan: [Pantara](https://pantara.hadooyy.my.id/) dan dashboard `/dashboard`, untuk sidebar berkelompok, header ringkas, kartu membulat, tombol pil, serta hierarki panel operasional.
+- Gunakan komponen frontend dari [21st.dev](https://21st.dev/) yang sesuai kebutuhan layar. Periksa sumber, lisensi, dan kebutuhan dependency setiap komponen sebelum mengadaptasinya. Sidebar Aceternity yang sudah diadaptasi di repo menjadi titik awal.
+- Adaptasi komponen mengikuti token resmi `08-DESIGN.md`, identitas biru KapanDok, bahasa Indonesia, aksesibilitas, dan responsivitas. Efek dekoratif referensi tidak otomatis menjadi bagian desain KapanDok.
+- Cakupan tetap frontend statis dengan data simulasi. Referensi ini tidak menambah halaman, backend, atau integrasi. Dependency di luar daftar yang disetujui tetap mengikuti aturan izin proyek.
+- Arahan tercatat; pemilihan komponen spesifik dan implementasi belum dilakukan.
+
 ## P10 Hari ini (`/app`, desktop 1440)
 1. **Rail kiri + bar atas** (08-DESIGN Components):
    - Rail: item aktif Hari ini, Tindak lanjut memakai badge 1.
